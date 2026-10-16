@@ -213,6 +213,7 @@
       "title": "Ship или sheep? Краткие и долгие гласные",
       "titleEn": "Ship or sheep? Short and long vowels",
       "items": ["ship", "sheep", "fish", "key", "cat", "cup", "bus", "hat", "bed", "bet"],
+      "matchBy": "emoji",
       "steps": [
         "intro",
         "match",

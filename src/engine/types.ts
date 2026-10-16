@@ -102,6 +102,8 @@ export interface Lesson {
   /** Item ids introduced in this lesson (words or phrases). */
   items: string[];
   steps: Step[];
+  /** Match exercises pair words with pictures ("emoji") or with Russian (default). */
+  matchBy?: 'emoji' | 'ru';
 }
 
 export type Slot =

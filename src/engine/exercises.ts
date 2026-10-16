@@ -167,7 +167,7 @@ export function buildLesson(cat: Category, lesson: Lesson, opts: BuildOptions): 
         break;
       case 'match': {
         const pick = shuffle(refs).slice(0, 5);
-        const allEmoji = pick.every((r) => r.item.emoji);
+        const allEmoji = lesson.matchBy === 'emoji' && pick.every((r) => r.item.emoji);
         out.push({
           kind: 'match',
           pairs: pick.map((r) => ({ ref: r, side: allEmoji ? `${r.item.emoji}` : r.item.ru }))

@@ -234,7 +234,7 @@
         "npc": "Nice to meet you, {name}.",
         "ru": "Приятно познакомиться, {name}.",
         "reply": {
-          "answers": [{ "say": "Nice to meet you too.", "accept": ["You too.", "Nice to meet you, too.", "Pleased to meet you too.", "Nice to meet you too, Tom.", "Nice to meet you, Tom.", "Lovely to meet you too."] }],
+          "answers": [{ "say": "Nice to meet you too.", "accept": ["You too.", "Nice to meet you, too.", "Pleased to meet you too.", "Nice to meet you too, Tom.", "Nice to meet you, Tom.", "Nice to meet you.", "Lovely to meet you too."] }],
           "wrong": ["Nice to meet me.", "I'm fine, thanks.", "Goodbye, Tom."],
           "extraTiles": ["me", "is"],
           "hint": "Ответьте: «Мне тоже приятно».",
