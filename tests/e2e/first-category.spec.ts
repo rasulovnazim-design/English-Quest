@@ -23,7 +23,10 @@ test('plays the whole first category: 5 lessons and the 3-round conversation', a
     await playUntil(page, 'lesson-done');
     await expect(page.getByText('Урок пройден!')).toBeVisible();
     await noHorizontalScroll(page);
-    if (lesson < 5) await page.getByTestId('next-lesson').click();
+    if (lesson < 5) {
+      await page.getByTestId('next-lesson').click();
+      await expect(page.getByTestId('lesson-done')).toHaveCount(0);
+    }
   }
 
   // The boss is unlocked after the last lesson.
@@ -43,7 +46,10 @@ test('plays the whole first category: 5 lessons and the 3-round conversation', a
     await expect(page.getByText(`Раунд ${round} из 3`)).toBeVisible();
     await playUntil(page, 'won');
     await noHorizontalScroll(page);
-    if (round < 3) await page.getByTestId('next-round').click();
+    if (round < 3) {
+      await page.getByTestId('next-round').click();
+      await expect(page.getByTestId('round-won')).toHaveCount(0);
+    }
   }
   await expect(page.getByText('Разговор пройден! 🏆')).toBeVisible();
   await page.getByTestId('boss-back').click();

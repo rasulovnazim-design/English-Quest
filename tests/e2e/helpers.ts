@@ -13,6 +13,33 @@ export async function enableTestHooks(page: Page) {
   await page.addInitScript(() => localStorage.setItem('eq-e2e', '1'));
 }
 
+/** A fingerprint of what is on screen, used to wait until an action has taken effect. */
+async function signature(page: Page): Promise<string> {
+  return page.evaluate(() =>
+    [
+      location.hash,
+      document.querySelector('[data-testid="feedback"]')?.getAttribute('data-status') ?? '',
+      !!document.querySelector('[data-testid="lesson-done"]'),
+      !!document.querySelector('[data-testid="round-won"]'),
+      document.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow') ?? '',
+      document.querySelectorAll('.bubble').length,
+      document.querySelector('.ex-title')?.textContent ?? '',
+      document.querySelector('.flash .front')?.textContent ?? '',
+      document.querySelector('.exercise')?.getAttribute('data-answer') ?? ''
+    ].join('|')
+  );
+}
+
+/** Runs an action and waits until the screen changes (the app re-renders asynchronously). */
+async function act(page: Page, action: () => Promise<unknown>) {
+  const before = await signature(page);
+  await action();
+  for (let i = 0; i < 50; i++) {
+    if ((await signature(page)) !== before) return;
+    await page.waitForTimeout(100);
+  }
+}
+
 async function visible(page: Page, selector: string) {
   const l = page.locator(selector).first();
   return (await l.count()) > 0 && (await l.isVisible());
@@ -30,53 +57,57 @@ export async function solveStep(page: Page): Promise<'lesson-done' | 'won' | 'st
   if (await visible(page, '[data-testid="lesson-done"]')) return 'lesson-done';
   if (await visible(page, '[data-testid="round-won"]')) return 'won';
   if (await visible(page, '[data-testid="feedback"]')) {
-    await page.locator('[data-testid="feedback"] [data-testid="continue"]').click();
+    await act(page, () => page.locator('[data-testid="feedback"] [data-testid="continue"]').click());
     return 'step';
   }
   if (await visible(page, '[data-pair]')) {
-    const n = (await page.locator('.match .col').first().locator('[data-pair]').count());
-    for (let i = 0; i < n; i++) {
-      await page.locator('.match .col').nth(0).locator(`[data-pair="${i}"]`).click();
-      await page.locator('.match .col').nth(1).locator(`[data-pair="${i}"]`).click();
-    }
+    const n = await page.locator('.match .col').first().locator('[data-pair]').count();
+    await act(page, async () => {
+      for (let i = 0; i < n; i++) {
+        const left = page.locator('.match .col').nth(0).locator(`[data-pair="${i}"]:not([disabled])`);
+        if ((await left.count()) === 0) continue;
+        await left.click();
+        await page.locator('.match .col').nth(1).locator(`[data-pair="${i}"]`).click();
+      }
+    });
     return 'step';
   }
   if (await visible(page, '[data-testid="flip"]')) {
     await page.getByTestId('flip').click();
-    await page.getByTestId('remembered').click();
+    await act(page, () => page.getByTestId('remembered').click());
     return 'step';
   }
   if (await visible(page, '[data-testid="remembered"]')) {
-    await page.getByTestId('remembered').click();
+    await act(page, () => page.getByTestId('remembered').click());
     return 'step';
   }
   if (await visible(page, '[data-testid="cant-speak"]')) {
-    await page.getByTestId('cant-speak').click();
+    await act(page, () => page.getByTestId('cant-speak').click());
     return 'step';
   }
   if (await visible(page, 'button[data-correct="1"]')) {
-    await page.locator('button[data-correct="1"]').first().click();
+    await act(page, () => page.locator('button[data-correct="1"]').first().click());
     return 'step';
   }
   const ex = page.locator('[data-answer]').last();
   if ((await ex.count()) > 0 && (await ex.isVisible())) {
     const answer = (await ex.getAttribute('data-answer'))!;
     if ((await ex.locator('[data-option]').count()) > 0) {
-      await ex.locator(`[data-option="${answer.replace(/"/g, '\\"')}"]`).click();
+      await act(page, () => ex.locator(`[data-option="${answer.replace(/"/g, '\\"')}"]`).click());
       return 'step';
     }
     if ((await ex.locator('button[data-tile]').count()) > 0) {
-      await buildTiles(page, '[data-answer]:visible', answer);
+      await act(page, () => buildTiles(page, '[data-answer]:visible', answer));
       return 'step';
     }
     if ((await ex.locator('[data-testid="answer-input"]').count()) > 0) {
       await ex.locator('[data-testid="answer-input"]').fill(answer);
-      await ex.locator('[data-testid="check"]').click();
+      await act(page, () => ex.locator('[data-testid="check"]').click());
       return 'step';
     }
   }
   if (await visible(page, '[data-testid="continue"]')) {
-    await page.locator('[data-testid="continue"]').first().click();
+    await act(page, () => page.locator('[data-testid="continue"]').first().click());
     return 'step';
   }
   await page.waitForTimeout(150);
