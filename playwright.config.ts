@@ -10,7 +10,7 @@ export default defineConfig({
   timeout: 240_000,
   expect: { timeout: 10_000 },
   retries: remote ? 1 : 0,
-  reporter: [['list']],
+  reporter: process.env.CI ? [['github'], ['list']] : [['list']],
   use: {
     baseURL,
     trace: 'retain-on-failure',
