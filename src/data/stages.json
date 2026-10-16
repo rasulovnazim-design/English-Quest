@@ -1,0 +1,35 @@
+{
+  "stages": [
+    { "id": 1, "title": "Первые слова", "titleEn": "First Words", "emoji": "🌱" },
+    { "id": 2, "title": "Я и мой мир", "titleEn": "Me and My World", "emoji": "🏡" },
+    { "id": 3, "title": "Повседневная жизнь", "titleEn": "Everyday Life", "emoji": "☀️" },
+    { "id": 4, "title": "В городе и в пути", "titleEn": "Out and About", "emoji": "🧳" }
+  ],
+  "map": [
+    { "id": "alphabet", "stage": 1, "title": "Алфавит и звуки", "titleEn": "Alphabet and sounds", "emoji": "🔤" },
+    { "id": "greetings", "stage": 1, "title": "Приветствие и знакомство", "titleEn": "Greetings and introductions", "emoji": "👋" },
+    { "id": "countries", "stage": 1, "title": "Страны, национальности и языки", "titleEn": "Countries, nationalities and languages", "emoji": "🌍" },
+    { "id": "numbers", "stage": 1, "title": "Числа от 1 до 100", "titleEn": "Numbers 1 to 100", "emoji": "🔢" },
+    { "id": "age", "stage": 1, "title": "Возраст", "titleEn": "Age", "emoji": "🎂" },
+    { "id": "family", "stage": 2, "title": "Семья", "titleEn": "Family", "emoji": "👨‍👩‍👧" },
+    { "id": "colours", "stage": 2, "title": "Цвета", "titleEn": "Colours", "emoji": "🎨" },
+    { "id": "jobs", "stage": 2, "title": "Работа и учёба", "titleEn": "Jobs and studies", "emoji": "💼" },
+    { "id": "clothes", "stage": 2, "title": "Одежда", "titleEn": "Clothes", "emoji": "👕" },
+    { "id": "body", "stage": 2, "title": "Тело", "titleEn": "The body", "emoji": "💪" },
+    { "id": "home", "stage": 2, "title": "Дом и комнаты", "titleEn": "Home and rooms", "emoji": "🛋️" },
+    { "id": "animals", "stage": 2, "title": "Животные", "titleEn": "Animals", "emoji": "🐈" },
+    { "id": "time", "stage": 3, "title": "Время", "titleEn": "Time", "emoji": "🕒" },
+    { "id": "dates", "stage": 3, "title": "Дни недели, месяцы и даты", "titleEn": "Days, months and dates", "emoji": "📅" },
+    { "id": "routine", "stage": 3, "title": "Распорядок дня", "titleEn": "Daily routine", "emoji": "⏰" },
+    { "id": "weather", "stage": 3, "title": "Погода и времена года", "titleEn": "Weather and seasons", "emoji": "🌦️" },
+    { "id": "food", "stage": 3, "title": "Еда и напитки", "titleEn": "Food and drink", "emoji": "🍎" },
+    { "id": "hobbies", "stage": 3, "title": "Хобби и свободное время", "titleEn": "Hobbies and free time", "emoji": "⚽" },
+    { "id": "feelings", "stage": 3, "title": "Чувства", "titleEn": "Feelings", "emoji": "😊" },
+    { "id": "directions", "stage": 4, "title": "Как пройти", "titleEn": "Directions", "emoji": "🧭" },
+    { "id": "transport", "stage": 4, "title": "Транспорт", "titleEn": "Transport", "emoji": "🚌" },
+    { "id": "shopping", "stage": 4, "title": "Покупки и деньги", "titleEn": "Shopping and money", "emoji": "🛍️" },
+    { "id": "cafe", "stage": 4, "title": "Кафе и ресторан", "titleEn": "Café and restaurant", "emoji": "☕" },
+    { "id": "doctor", "stage": 4, "title": "У врача и экстренные ситуации", "titleEn": "At the doctor and emergencies", "emoji": "🩺" },
+    { "id": "travel", "stage": 4, "title": "Отель и аэропорт", "titleEn": "Hotel and airport", "emoji": "✈️" }
+  ]
+}
