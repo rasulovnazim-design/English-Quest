@@ -91,7 +91,7 @@
     { "id": "repeat", "en": "Could you repeat that, please?", "ru": "Повторите, пожалуйста.", "ipa": "/kʊd juː rɪˈpiːt ðæt pliːz/", "alt": ["Can you repeat that, please?", "Could you say that again, please?", "Can you say that again, please?", "Sorry, could you repeat that?", "Sorry, can you repeat that?"] },
     { "id": "slowly", "en": "Can you speak more slowly, please?", "ru": "Говорите, пожалуйста, помедленнее.", "ipa": "/kən juː spiːk mɔː ˈsləʊli pliːz/", "alt": ["Could you speak more slowly, please?", "Can you speak slower, please?", "Could you speak slower, please?", "More slowly, please."] },
     { "id": "dont-understand", "en": "Sorry, I don't understand.", "ru": "Извините, я не понимаю.", "ipa": "/ˈsɒri aɪ dəʊnt ˌʌndəˈstænd/", "alt": ["I'm sorry, I don't understand.", "Sorry, I didn't understand."] },
-    { "id": "what-mean", "en": "What does \"map\" mean?", "ru": "Что значит «map»?", "ipa": "/wɒt dʌz mæp miːn/", "alt": ["What is map?", "What's map?"] },
+    { "id": "what-mean", "en": "What does \"map\" mean?", "ru": "Что значит «map»?", "ipa": "/wɒt dʌz mæp miːn/", "alt": ["What does map mean?", "What's \"map\"?"] },
     { "id": "how-say", "en": "How do you say this in English?", "ru": "Как это сказать по-английски?", "ipa": "/haʊ də juː seɪ ðɪs ɪn ˈɪŋɡlɪʃ/", "alt": ["How do you say that in English?", "How do you say it in English?"] },
     { "id": "dont-know", "en": "I don't know.", "ru": "Я не знаю.", "ipa": "/aɪ dəʊnt nəʊ/", "alt": ["Sorry, I don't know.", "I'm not sure."] },
     { "id": "right", "en": "Yes, that's right.", "ru": "Да, правильно.", "ipa": "/jes ðæts raɪt/", "alt": ["That's right.", "Yes, that's correct.", "Yes, right.", "Yes."] },
@@ -100,7 +100,7 @@
   "mistakes": [
     {
       "title": "Названия букв A, E, I",
-      "text": "Английские буквы называются не так, как читаются в русском: A — «эй», E — «и», I — «ай». Когда диктуете имя или адрес по буквам, E и I путают чаще всего.",
+      "text": "Английские буквы называются не так, как похожие на них русские: A — «эй», E — «и», I — «ай». Когда диктуете имя или адрес по буквам, E и I путают чаще всего.",
       "wrong": "Anna — «А, Н, Н, А»",
       "right": "Anna — «эй, эн, эн, эй»"
     },
@@ -203,7 +203,7 @@
         "meaning",
         "dictation",
         "dictation",
-        { "type": "tiles", "en": "Thank you very much.", "ru": "Большое спасибо.", "extra": ["think", "much"] },
+        { "type": "tiles", "en": "Thank you very much.", "ru": "Большое спасибо.", "extra": ["think", "many"] },
         "speak",
         "speak"
       ]
@@ -249,7 +249,7 @@
         { "type": "gap", "en": "This is my phone. ___ is new.", "ru": "Это мой телефон. Он новый.", "answer": "It", "options": ["He", "She", "They"], "why": "О предметах говорят it, даже если по-русски «он»." },
         { "type": "gap", "en": "Ivan and I are friends. ___ are from Moscow.", "ru": "Мы с Иваном друзья. Мы из Москвы.", "answer": "We", "options": ["They", "You", "I"], "why": "«Иван и я» — это «мы», we." },
         { "type": "tiles", "en": "Can you speak more slowly, please?", "ru": "Говорите, пожалуйста, помедленнее.", "extra": ["very", "do"] },
-        { "type": "tiles", "en": "Could you repeat that, please?", "ru": "Повторите, пожалуйста.", "extra": ["this", "you"] },
+        { "type": "tiles", "en": "Could you repeat that, please?", "ru": "Повторите, пожалуйста.", "extra": ["this", "do"] },
         { "type": "translate", "ru": "Извините, я не понимаю.", "en": "Sorry, I don't understand.", "alt": ["I'm sorry, I don't understand.", "Excuse me, I don't understand."], "why": "«Не понимаю» — I don't understand: перед глаголом нужен don't." },
         { "type": "translate", "ru": "Я не знаю.", "en": "I don't know.", "why": "Отрицание строится с don't: I don't know." },
         { "type": "dictation", "say": "A, N, N, A.", "en": "Anna", "ru": "Имя продиктовано по буквам. Напишите его." },
@@ -310,7 +310,7 @@
       {
         "id": "a4",
         "npc": "Great. Your class is in room B12 with Mr Thompson on Wednesday mornings at nine thirty.",
-        "ru": "Отлично. Ваши занятия — в кабинете B12 у мистера Томпсона по средам в 9:30. (Эмма говорит очень быстро.)",
+        "ru": "Отлично. Ваши занятия — в кабинете B12 у мистера Томпсона по средам в 9:30 утра. (Эмма говорит очень быстро.)",
         "reply": {
           "answers": [
             { "say": "Can you speak more slowly, please?", "accept": ["Could you speak more slowly, please?", "Can you speak slower, please?", "More slowly, please.", "Slowly, please."] },

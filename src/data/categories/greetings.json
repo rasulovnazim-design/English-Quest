@@ -10,7 +10,7 @@
     "title": "Глагол to be: am, is, are",
     "titleEn": "To be: am, is, are",
     "explanation": [
-      "По-русски мы говорим «Я Анна», «Она моя коллега» — без глагола. В английском так нельзя: после подлежащего обязательно нужен глагол to be («быть»). У него три формы в настоящем времени: am, is, are.",
+      "По-русски мы говорим «Я Анна», «Она моя коллега» — без глагола. В английском так нельзя: в таких предложениях обязательно нужен глагол to be («быть»). У него три формы в настоящем времени: am, is, are.",
       "I → am. He, she, it → is. You, we, they → are.",
       "В разговоре формы почти всегда сокращают: I'm, you're, he's, she's, it's, we're, they're. Полная форма звучит официально или подчёркнуто.",
       "Представляются так: I'm Ivan или My name's Ivan (дословно «моё имя есть Иван»)."
@@ -53,7 +53,7 @@
     { "id": "colleague", "en": "colleague", "ru": "коллега", "ipa": "/ˈkɒliːɡ/", "emoji": "🧑‍💼" },
     { "id": "mr", "en": "Mr", "ru": "господин (перед фамилией мужчины)", "ipa": "/ˈmɪstə/", "emoji": "👨", "say": "Mister", "us": "Mr.", "alt": ["mister"] },
     { "id": "mrs", "en": "Mrs", "ru": "госпожа (перед фамилией замужней женщины)", "ipa": "/ˈmɪsɪz/", "emoji": "👩", "say": "Missis", "us": "Mrs." },
-    { "id": "ms", "en": "Ms", "ru": "госпожа (перед фамилией любой женщины)", "ipa": "/mɪz/", "emoji": "👩‍💼", "say": "Miz", "us": "Ms.", "note": "Нейтральное обращение: не говорит, замужем ли женщина." }
+    { "id": "ms", "en": "Ms", "ru": "госпожа (перед фамилией любой женщины)", "ipa": "/mɪz/", "emoji": "👩‍💼", "say": "Miz", "us": "Ms.", "note": "Нейтральное обращение: не указывает, замужем ли женщина." }
   ],
   "phrases": [
     { "id": "hi-im", "en": "Hi, I'm Anna.", "ru": "Привет, я Анна.", "ipa": "/haɪ aɪm ˈænə/", "alt": ["Hello, I'm Anna.", "Hi, I am Anna.", "Hello, I am Anna."] },
@@ -95,13 +95,13 @@
     },
     {
       "title": "Excuse me и sorry",
-      "text": "Excuse me — чтобы привлечь внимание или попросить пропустить. Sorry — чтобы извиниться или переспросить, если не расслышали.",
-      "wrong": "Sorry, where is the station? (чтобы обратиться)",
+      "text": "Excuse me — чтобы привлечь внимание или попросить пропустить. Sorry — прежде всего чтобы извиниться или переспросить, если не расслышали. Британцы иногда начинают с Sorry и обращение к незнакомцу, но Excuse me — самый надёжный вариант.",
+      "wrong": "Where is the station? (без вступления)",
       "right": "Excuse me, where is the station?"
     },
     {
       "title": "Mr, Mrs и Ms — перед фамилией",
-      "text": "Обращения Mr, Mrs и Ms ставят перед фамилией, а не перед именем. К учителю или начальнику часто обращаются именно так.",
+      "text": "Обращения Mr, Mrs и Ms ставят перед фамилией, а не перед именем. Так обращаются, например, к учителю в школе или в официальной обстановке; начальника в британском офисе обычно зовут просто по имени.",
       "wrong": "Mr John",
       "right": "Mr Smith"
     },
@@ -125,7 +125,7 @@
         "listen",
         "meaning",
         { "type": "choose", "prompt": "Сейчас 15:00. Как поздороваться с коллегой?", "answer": "Good afternoon!", "options": ["Good morning!", "Good night!", "Good day!"], "why": "Примерно с 12 до 18 часов говорят Good afternoon. Good night — это «спокойной ночи»." },
-        { "type": "choose", "prompt": "Сейчас 20:00. Вы пришли в гости. Что сказать?", "answer": "Good evening!", "options": ["Good night!", "Good afternoon!", "Goodbye!"], "why": "Вечером при встрече говорят Good evening. Good night — только на прощание перед сном." },
+        { "type": "choose", "prompt": "Сейчас 20:00. Вы пришли в гости. Что сказать?", "answer": "Good evening!", "options": ["Good night!", "Good afternoon!", "Goodbye!"], "why": "Вечером при встрече говорят Good evening. Good night — только на прощание поздно вечером или перед сном." },
         "flash-en",
         "listen",
         { "type": "gap", "en": "See you ___!", "ru": "Увидимся!", "answer": "later", "options": ["after", "late", "soon later"], "why": "Устойчивая фраза: See you later!" },
@@ -195,7 +195,7 @@
         { "type": "gap", "en": "This ___ my friend Olga.", "ru": "Это моя подруга Ольга.", "answer": "is", "alt": ["'s"], "options": ["am", "are", "it"], "why": "This is — «это (есть)»: This is my friend." },
         { "type": "gap", "en": "She ___ my colleague.", "ru": "Она моя коллега.", "answer": "is", "alt": ["'s"], "options": ["are", "am", "be"], "why": "С he, she, it — is." },
         { "type": "gap", "en": "We ___ friends.", "ru": "Мы друзья.", "answer": "are", "alt": ["'re"], "options": ["is", "am", "be"], "why": "С we, you, they — are." },
-        { "type": "choose", "prompt": "Вы хотите обратиться к незнакомцу на улице. Что сказать сначала?", "answer": "Excuse me…", "options": ["Sorry…", "Hello, friend…", "Please…"], "why": "Чтобы привлечь внимание, говорят Excuse me. Sorry — это извинение." },
+        { "type": "choose", "prompt": "Вы хотите обратиться к незнакомцу на улице. Что сказать сначала?", "answer": "Excuse me…", "options": ["Goodbye…", "Hello, friend…", "Please…"], "why": "Чтобы привлечь внимание незнакомца, говорят Excuse me." },
         { "type": "tiles", "en": "Nice to meet you too.", "ru": "Мне тоже очень приятно.", "extra": ["me", "to"] },
         { "type": "tiles", "en": "This is my colleague Tom.", "ru": "Это мой коллега Том.", "extra": ["are", "me"], "alt": ["This is Tom, my colleague."] },
         "flash-ru",
