@@ -1,0 +1,362 @@
+{
+  "id": "alphabet",
+  "stage": 1,
+  "order": 1,
+  "title": "Алфавит и звуки",
+  "titleEn": "Alphabet and sounds",
+  "emoji": "🔤",
+  "description": "Английские буквы, трудные для русскоговорящих звуки и фразы, которые выручат, если вы чего-то не поняли.",
+  "grammar": {
+    "title": "Личные местоимения",
+    "titleEn": "Subject pronouns: I, you, he, she, it, we, they",
+    "explanation": [
+      "Личные местоимения показывают, кто действует, и стоят перед глаголом: I — я, you — ты или вы, he — он, she — она, it — он, она, оно (о предмете или животном), we — мы, they — они.",
+      "You — это и «ты», и «вы». В английском нет отдельной вежливой формы: вежливость передают словами please, thank you и мягкой интонацией.",
+      "I всегда пишется с большой буквы, даже в середине предложения.",
+      "О предметах говорят it, даже если по-русски предмет мужского или женского рода: The phone? It's new. — Телефон? Он новый."
+    ],
+    "table": [
+      { "en": "I", "ru": "я" },
+      { "en": "you", "ru": "ты, вы" },
+      { "en": "he", "ru": "он (о человеке)" },
+      { "en": "she", "ru": "она (о человеке)" },
+      { "en": "it", "ru": "он, она, оно (о предмете, животном)" },
+      { "en": "we", "ru": "мы" },
+      { "en": "they", "ru": "они" }
+    ],
+    "examples": [
+      { "en": "I'm Anna.", "ru": "Я Анна." },
+      { "en": "Where's Olga? She's at home.", "ru": "Где Ольга? Она дома." },
+      { "en": "This is my phone. It's new.", "ru": "Это мой телефон. Он новый." },
+      { "en": "Ivan and I are friends. We're from Kazan.", "ru": "Мы с Иваном друзья. Мы из Казани." }
+    ]
+  },
+  "letters": [
+    { "id": "l-a", "en": "A", "ru": "«эй»", "ipa": "/eɪ/", "say": "The letter A." },
+    { "id": "l-b", "en": "B", "ru": "«би»", "ipa": "/biː/", "say": "The letter B." },
+    { "id": "l-c", "en": "C", "ru": "«си»", "ipa": "/siː/", "say": "The letter C." },
+    { "id": "l-d", "en": "D", "ru": "«ди»", "ipa": "/diː/", "say": "The letter D." },
+    { "id": "l-e", "en": "E", "ru": "«и»", "ipa": "/iː/", "say": "The letter E." },
+    { "id": "l-f", "en": "F", "ru": "«эф»", "ipa": "/ef/", "say": "The letter F." },
+    { "id": "l-g", "en": "G", "ru": "«джи»", "ipa": "/dʒiː/", "say": "The letter G." },
+    { "id": "l-h", "en": "H", "ru": "«эйч»", "ipa": "/eɪtʃ/", "say": "The letter H." },
+    { "id": "l-i", "en": "I", "ru": "«ай»", "ipa": "/aɪ/", "say": "The letter I." },
+    { "id": "l-j", "en": "J", "ru": "«джей»", "ipa": "/dʒeɪ/", "say": "The letter J." },
+    { "id": "l-k", "en": "K", "ru": "«кей»", "ipa": "/keɪ/", "say": "The letter K." },
+    { "id": "l-l", "en": "L", "ru": "«эл»", "ipa": "/el/", "say": "The letter L." },
+    { "id": "l-m", "en": "M", "ru": "«эм»", "ipa": "/em/", "say": "The letter M." },
+    { "id": "l-n", "en": "N", "ru": "«эн»", "ipa": "/en/", "say": "The letter N." },
+    { "id": "l-o", "en": "O", "ru": "«оу»", "ipa": "/əʊ/", "say": "The letter O." },
+    { "id": "l-p", "en": "P", "ru": "«пи»", "ipa": "/piː/", "say": "The letter P." },
+    { "id": "l-q", "en": "Q", "ru": "«кью»", "ipa": "/kjuː/", "say": "The letter Q." },
+    { "id": "l-r", "en": "R", "ru": "«а» (в американском — «ар»)", "ipa": "/ɑː/", "say": "The letter R." },
+    { "id": "l-s", "en": "S", "ru": "«эс»", "ipa": "/es/", "say": "The letter S." },
+    { "id": "l-t", "en": "T", "ru": "«ти»", "ipa": "/tiː/", "say": "The letter T." },
+    { "id": "l-u", "en": "U", "ru": "«ю»", "ipa": "/juː/", "say": "The letter U." },
+    { "id": "l-v", "en": "V", "ru": "«ви»", "ipa": "/viː/", "say": "The letter V." },
+    { "id": "l-w", "en": "W", "ru": "«дабл-ю»", "ipa": "/ˈdʌbəljuː/", "say": "The letter W." },
+    { "id": "l-x", "en": "X", "ru": "«экс»", "ipa": "/eks/", "say": "The letter X." },
+    { "id": "l-y", "en": "Y", "ru": "«уай»", "ipa": "/waɪ/", "say": "The letter Y." },
+    { "id": "l-z", "en": "Z", "ru": "«зед» (в американском — «зи»)", "ipa": "/zed/", "say": "The letter Z." }
+  ],
+  "words": [
+    { "id": "apple", "en": "apple", "ru": "яблоко", "ipa": "/ˈæpl/", "emoji": "🍎" },
+    { "id": "bag", "en": "bag", "ru": "сумка", "ipa": "/bæɡ/", "emoji": "👜" },
+    { "id": "dog", "en": "dog", "ru": "собака", "ipa": "/dɒɡ/", "emoji": "🐕" },
+    { "id": "egg", "en": "egg", "ru": "яйцо", "ipa": "/eɡ/", "emoji": "🥚" },
+    { "id": "map", "en": "map", "ru": "карта", "ipa": "/mæp/", "emoji": "🗺️" },
+    { "id": "pen", "en": "pen", "ru": "ручка", "ipa": "/pen/", "emoji": "🖊️" },
+    { "id": "book", "en": "book", "ru": "книга", "ipa": "/bʊk/", "emoji": "📕" },
+    { "id": "think", "en": "think", "ru": "думать", "ipa": "/θɪŋk/", "emoji": "🤔", "note": "th — кончик языка между зубами, а не «с»." },
+    { "id": "three", "en": "three", "ru": "три", "ipa": "/θriː/", "emoji": "3️⃣" },
+    { "id": "this", "en": "this", "ru": "это, этот", "ipa": "/ðɪs/", "emoji": "👇", "note": "Звонкий th — не «з», а язык между зубами." },
+    { "id": "very", "en": "very", "ru": "очень", "ipa": "/ˈveri/", "emoji": "💯" },
+    { "id": "wine", "en": "wine", "ru": "вино", "ipa": "/waɪn/", "emoji": "🍷", "note": "w — губы трубочкой, как короткое «у». vine с «в» — виноградная лоза." },
+    { "id": "water", "en": "water", "ru": "вода", "ipa": "/ˈwɔːtə/", "emoji": "💧" },
+    { "id": "phone", "en": "phone", "ru": "телефон", "ipa": "/fəʊn/", "emoji": "📱", "note": "ph читается как «ф»." },
+    { "id": "ship", "en": "ship", "ru": "корабль", "ipa": "/ʃɪp/", "emoji": "🚢", "note": "Краткий звук [ɪ]." },
+    { "id": "sheep", "en": "sheep", "ru": "овца", "ipa": "/ʃiːp/", "emoji": "🐑", "note": "Долгий звук [iː] — тяните «и»." },
+    { "id": "fish", "en": "fish", "ru": "рыба", "ipa": "/fɪʃ/", "emoji": "🐟" },
+    { "id": "key", "en": "key", "ru": "ключ", "ipa": "/kiː/", "emoji": "🔑" },
+    { "id": "cat", "en": "cat", "ru": "кошка, кот", "ipa": "/kæt/", "emoji": "🐈", "note": "[æ] — широкий звук между «а» и «э»." },
+    { "id": "cup", "en": "cup", "ru": "чашка", "ipa": "/kʌp/", "emoji": "☕", "note": "[ʌ] — короткое «а»." },
+    { "id": "bus", "en": "bus", "ru": "автобус", "ipa": "/bʌs/", "emoji": "🚌" },
+    { "id": "hat", "en": "hat", "ru": "шляпа", "ipa": "/hæt/", "emoji": "🎩" },
+    { "id": "bed", "en": "bed", "ru": "кровать", "ipa": "/bed/", "emoji": "🛏️", "note": "Звонкое d в конце не оглушайте, иначе получится bet." },
+    { "id": "bet", "en": "bet", "ru": "ставка, пари", "ipa": "/bet/", "emoji": "🎲" }
+  ],
+  "phrases": [
+    { "id": "spell-that", "en": "How do you spell that?", "ru": "Как это пишется?", "ipa": "/haʊ də juː ˈspel ðæt/", "alt": ["How do you spell it?", "How do you spell this?"] },
+    { "id": "spell-name", "en": "Can you spell your name, please?", "ru": "Продиктуйте, пожалуйста, своё имя по буквам.", "ipa": "/kən juː ˈspel jɔː ˈneɪm pliːz/", "alt": ["Could you spell your name, please?", "Can you spell your name?"] },
+    { "id": "repeat", "en": "Could you repeat that, please?", "ru": "Повторите, пожалуйста.", "ipa": "/kʊd juː rɪˈpiːt ðæt pliːz/", "alt": ["Can you repeat that, please?", "Could you say that again, please?", "Can you say that again, please?", "Sorry, could you repeat that?", "Sorry, can you repeat that?"] },
+    { "id": "slowly", "en": "Can you speak more slowly, please?", "ru": "Говорите, пожалуйста, помедленнее.", "ipa": "/kən juː spiːk mɔː ˈsləʊli pliːz/", "alt": ["Could you speak more slowly, please?", "Can you speak slower, please?", "Could you speak slower, please?", "More slowly, please."] },
+    { "id": "dont-understand", "en": "Sorry, I don't understand.", "ru": "Извините, я не понимаю.", "ipa": "/ˈsɒri aɪ dəʊnt ˌʌndəˈstænd/", "alt": ["I'm sorry, I don't understand.", "Sorry, I didn't understand."] },
+    { "id": "what-mean", "en": "What does \"map\" mean?", "ru": "Что значит «map»?", "ipa": "/wɒt dʌz mæp miːn/", "alt": ["What is map?", "What's map?"] },
+    { "id": "how-say", "en": "How do you say this in English?", "ru": "Как это сказать по-английски?", "ipa": "/haʊ də juː seɪ ðɪs ɪn ˈɪŋɡlɪʃ/", "alt": ["How do you say that in English?", "How do you say it in English?"] },
+    { "id": "dont-know", "en": "I don't know.", "ru": "Я не знаю.", "ipa": "/aɪ dəʊnt nəʊ/", "alt": ["Sorry, I don't know.", "I'm not sure."] },
+    { "id": "right", "en": "Yes, that's right.", "ru": "Да, правильно.", "ipa": "/jes ðæts raɪt/", "alt": ["That's right.", "Yes, that's correct.", "Yes, right.", "Yes."] },
+    { "id": "thank-you", "en": "Thank you!", "ru": "Спасибо!", "ipa": "/ˈθæŋk juː/", "alt": ["Thanks!", "Thank you very much!", "Thanks a lot!"] }
+  ],
+  "mistakes": [
+    {
+      "title": "Названия букв A, E, I",
+      "text": "Английские буквы называются не так, как читаются в русском: A — «эй», E — «и», I — «ай». Когда диктуете имя или адрес по буквам, E и I путают чаще всего.",
+      "wrong": "Anna — «А, Н, Н, А»",
+      "right": "Anna — «эй, эн, эн, эй»"
+    },
+    {
+      "title": "Звук th — не «с» и не «з»",
+      "text": "Кончик языка кладут между зубами и выдыхают. Глухой th — в словах think, three, thank you, звонкий — в this, that, the. Если сказать «синк» вместо think, получится sink — раковина.",
+      "wrong": "«сэнк ю», «зис»",
+      "right": "thank you, this"
+    },
+    {
+      "title": "W и V — разные звуки",
+      "text": "Для w губы вытягивают трубочкой, как для короткого «у», и зубы губ не касаются: wine, water, what. V — как русское «в»: very. Wine — вино, а vine — виноградная лоза.",
+      "wrong": "«вайн», «вотер»",
+      "right": "wine /waɪn/, water /ˈwɔːtə/"
+    },
+    {
+      "title": "Краткие и долгие гласные",
+      "text": "Долгота гласного меняет смысл: ship — корабль, sheep — овца; sit — сидеть, seat — место. Долгий звук [iː] тяните, краткий [ɪ] произносите коротко и расслабленно.",
+      "wrong": "sheep вместо ship",
+      "right": "ship /ʃɪp/ — sheep /ʃiːp/"
+    },
+    {
+      "title": "Не оглушайте согласные в конце слова",
+      "text": "В русском «дуб» звучит как «дуп». В английском звонкий согласный в конце слова остаётся звонким, иначе меняется смысл: bed — кровать, bet — ставка; bag — сумка, back — спина.",
+      "wrong": "bed как «бет»",
+      "right": "bed /bed/ — с чётким d"
+    },
+    {
+      "title": "H — «эйч», Z — «зед»",
+      "text": "Букву H называют «эйч», а не «аш». Z в британском английском — «зед», в американском — «зи». R в британском варианте называется «а», без «р».",
+      "wrong": "«аш», «зет»",
+      "right": "H — «эйч», Z — «зед»"
+    },
+    {
+      "title": "I — всегда с большой буквы",
+      "text": "Местоимение I («я») пишется заглавной буквой в любом месте предложения.",
+      "wrong": "Anna and i are friends.",
+      "right": "Anna and I are friends."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "1",
+      "title": "Буквы A–M",
+      "titleEn": "Letters A to M",
+      "items": ["l-a", "l-b", "l-c", "l-d", "l-e", "l-f", "l-g", "l-h", "l-i", "l-j", "l-k", "l-l", "l-m", "apple", "bag", "dog", "egg", "map"],
+      "steps": [
+        "intro",
+        { "type": "choose", "prompt": "Какая буква называется «ай»?", "answer": "I", "options": ["E", "A", "Y"], "why": "«Ай» — это I. E называется «и», A — «эй»." },
+        { "type": "choose", "prompt": "Какая буква называется «и»?", "answer": "E", "options": ["I", "A", "Y"], "why": "«И» — это E. Буква I называется «ай»." },
+        "listen",
+        "listen",
+        "listen",
+        { "type": "choose", "prompt": "Как называется буква H?", "answer": "«эйч»", "options": ["«аш»", "«хэ»", "«эх»"], "why": "H по-английски — «эйч» /eɪtʃ/." },
+        { "type": "choose", "prompt": "Какая буква называется «джи»?", "answer": "G", "options": ["J", "D", "Z"], "why": "G — «джи», а J — «джей»." },
+        "listen",
+        "listen",
+        { "type": "dictation", "say": "D, O, G.", "en": "dog", "ru": "Слово продиктовано по буквам. Напишите его." },
+        { "type": "dictation", "say": "B, A, G.", "en": "bag", "ru": "Слово продиктовано по буквам. Напишите его." },
+        "meaning",
+        "meaning"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Буквы N–Z",
+      "titleEn": "Letters N to Z",
+      "items": ["l-n", "l-o", "l-p", "l-q", "l-r", "l-s", "l-t", "l-u", "l-v", "l-w", "l-x", "l-y", "l-z", "pen", "book", "spell-that"],
+      "steps": [
+        "intro",
+        { "type": "choose", "prompt": "Какая буква называется «уай»?", "answer": "Y", "options": ["W", "V", "I"], "why": "«Уай» — это Y. W называется «дабл-ю»." },
+        { "type": "choose", "prompt": "Как называется буква W?", "answer": "«дабл-ю»", "options": ["«вэ»", "«ви»", "«уай»"], "why": "W — «дабл-ю», то есть «двойная U»." },
+        "listen",
+        "listen",
+        "listen",
+        { "type": "choose", "prompt": "Какая буква называется «ю»?", "answer": "U", "options": ["Y", "Q", "W"], "why": "«Ю» — это U. Q называется «кью»." },
+        { "type": "choose", "prompt": "Как называется буква Z в британском английском?", "answer": "«зед»", "options": ["«зет»", "«зэ»", "«зи»"], "why": "В британском английском Z — «зед», в американском — «зи»." },
+        "listen",
+        { "type": "dictation", "say": "P, E, N.", "en": "pen", "ru": "Слово продиктовано по буквам. Напишите его." },
+        { "type": "dictation", "say": "B, O, O, K.", "en": "book", "ru": "Слово продиктовано по буквам. Напишите его." },
+        { "type": "tiles", "en": "How do you spell that?", "ru": "Как это пишется?", "extra": ["say", "is"] },
+        "meaning"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Трудные звуки: th, w и v",
+      "titleEn": "Tricky sounds: th, w and v",
+      "items": ["think", "three", "this", "very", "wine", "water", "phone", "thank-you"],
+      "steps": [
+        "intro",
+        "match",
+        "listen",
+        "listen",
+        "meaning",
+        { "type": "choose", "prompt": "Что значит wine?", "promptEn": "wine", "answer": "вино", "options": ["лоза", "вина", "вена"], "why": "wine /waɪn/ — вино. Похожее слово vine /vaɪn/ — виноградная лоза: для w губы вытягивают трубочкой." },
+        { "type": "gap", "en": "___ you very much!", "ru": "Большое спасибо!", "answer": "Thank", "options": ["Think", "Sank", "Tank"], "why": "thank — благодарить, think — думать. Оба слова начинаются со звука th." },
+        "flash-en",
+        "listen",
+        "meaning",
+        "dictation",
+        "dictation",
+        { "type": "tiles", "en": "Thank you very much.", "ru": "Большое спасибо.", "extra": ["think", "much"] },
+        "speak",
+        "speak"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Ship или sheep? Краткие и долгие гласные",
+      "titleEn": "Ship or sheep? Short and long vowels",
+      "items": ["ship", "sheep", "fish", "key", "cat", "cup", "bus", "hat", "bed", "bet"],
+      "steps": [
+        "intro",
+        "match",
+        "listen",
+        "listen",
+        { "type": "choose", "prompt": "Что значит sheep?", "promptEn": "sheep", "answer": "овца", "options": ["корабль", "шип", "шапка"], "why": "sheep /ʃiːp/ (долгий звук) — овца, ship /ʃɪp/ (краткий) — корабль." },
+        { "type": "choose", "prompt": "В каком слове долгий звук [iː]?", "answer": "key", "options": ["fish", "ship", "bed"], "why": "key /kiː/ — долгий звук. В fish и ship — краткий [ɪ]." },
+        "listen",
+        "listen",
+        "match",
+        "flash-ru",
+        { "type": "choose", "prompt": "Что значит bed?", "promptEn": "bed", "answer": "кровать", "options": ["ставка", "плохой", "пчела"], "why": "bed — кровать, а bet — ставка. Звонкое d в конце не оглушайте." },
+        "dictation",
+        "dictation",
+        "speak"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Продиктуйте по буквам",
+      "titleEn": "Spell it!",
+      "items": ["spell-name", "repeat", "slowly", "dont-understand", "what-mean", "how-say", "dont-know", "right"],
+      "steps": [
+        "intro",
+        "meaning",
+        "meaning",
+        "listen",
+        "listen",
+        "flash-en",
+        "grammar",
+        { "type": "gap", "en": "___ am Anna.", "ru": "Я Анна.", "answer": "I", "options": ["Me", "My", "It"], "why": "«Я» перед глаголом — I. Оно всегда пишется с большой буквы." },
+        { "type": "gap", "en": "Olga is my friend. ___ is from Kazan.", "ru": "Ольга — моя подруга. Она из Казани.", "answer": "She", "options": ["He", "It", "They"], "why": "Ольга — женщина, поэтому she." },
+        { "type": "gap", "en": "This is my phone. ___ is new.", "ru": "Это мой телефон. Он новый.", "answer": "It", "options": ["He", "She", "They"], "why": "О предметах говорят it, даже если по-русски «он»." },
+        { "type": "gap", "en": "Ivan and I are friends. ___ are from Moscow.", "ru": "Мы с Иваном друзья. Мы из Москвы.", "answer": "We", "options": ["They", "You", "I"], "why": "«Иван и я» — это «мы», we." },
+        { "type": "tiles", "en": "Can you speak more slowly, please?", "ru": "Говорите, пожалуйста, помедленнее.", "extra": ["very", "do"] },
+        { "type": "tiles", "en": "Could you repeat that, please?", "ru": "Повторите, пожалуйста.", "extra": ["this", "you"] },
+        { "type": "translate", "ru": "Извините, я не понимаю.", "en": "Sorry, I don't understand.", "alt": ["I'm sorry, I don't understand.", "Excuse me, I don't understand."], "why": "«Не понимаю» — I don't understand: перед глаголом нужен don't." },
+        { "type": "translate", "ru": "Я не знаю.", "en": "I don't know.", "why": "Отрицание строится с don't: I don't know." },
+        { "type": "dictation", "say": "A, N, N, A.", "en": "Anna", "ru": "Имя продиктовано по буквам. Напишите его." },
+        "speak"
+      ]
+    }
+  ],
+  "boss": {
+    "character": "Emma",
+    "role": "администратор языковой школы",
+    "avatar": "👩🏼‍💼",
+    "voice": "female",
+    "scene": "Вы пришли записаться на курсы английского. Администратор Эмма заполняет анкету и просит продиктовать имя по буквам.",
+    "start": "a1",
+    "nodes": [
+      {
+        "id": "a1",
+        "npc": "Hello! Welcome to Bright English. I'm Emma. And your name is…?",
+        "ru": "Здравствуйте! Добро пожаловать в Bright English. Я Эмма. А вас зовут…?",
+        "reply": {
+          "answers": [{ "say": "{name}.", "patterns": ["[hello|hi]? [i am|my name is|it is]? {name}"] }],
+          "wrong": ["Thank you.", "I don't know.", "How do you spell that?"],
+          "extraTiles": ["is", "name"],
+          "hint": "Просто назовите своё имя.",
+          "ru": "Назовите своё имя.",
+          "why": "Эмма спрашивает, как вас зовут. Назовите имя."
+        },
+        "next": "a2"
+      },
+      {
+        "id": "a2",
+        "npc": "Thank you. Can you spell your name, please?",
+        "ru": "Спасибо. Продиктуйте, пожалуйста, имя по буквам.",
+        "reply": {
+          "answers": [{ "say": "{spelled}.", "patterns": ["{letters}", "[it is|it's]? {letters}"] }],
+          "wrong": ["{name}.", "Yes, that's right.", "I don't know."],
+          "extraTiles": ["and", "is"],
+          "hint": "Назовите буквы своего имени по-английски: A — «эй», N — «эн»… Пишите их через пробел или дефис: A-N-N-A.",
+          "ru": "Продиктуйте имя по буквам.",
+          "why": "Нужно назвать имя по буквам, например: A, N, N, A."
+        },
+        "next": "a3"
+      },
+      {
+        "id": "a3",
+        "npc": "So that's {spelled}. Is that right?",
+        "ru": "Итак, {spelled}. Правильно?",
+        "reply": {
+          "answers": [{ "say": "Yes, that's right.", "accept": ["Yes.", "That's right.", "Yes, that's correct.", "Yes, right.", "Yes, it is."] }],
+          "wrong": ["Sorry, I don't understand.", "How do you spell that?", "Thank you very much!"],
+          "extraTiles": ["very", "is"],
+          "hint": "Подтвердите: «Да, правильно».",
+          "ru": "Да, правильно.",
+          "why": "Эмма спрашивает, правильно ли она записала. Ответьте «Да, правильно» — Yes, that's right."
+        },
+        "next": "a4"
+      },
+      {
+        "id": "a4",
+        "npc": "Great. Your class is in room B12 with Mr Thompson on Wednesday mornings at nine thirty.",
+        "ru": "Отлично. Ваши занятия — в кабинете B12 у мистера Томпсона по средам в 9:30. (Эмма говорит очень быстро.)",
+        "reply": {
+          "answers": [
+            { "say": "Can you speak more slowly, please?", "accept": ["Could you speak more slowly, please?", "Can you speak slower, please?", "More slowly, please.", "Slowly, please."] },
+            { "say": "Could you repeat that, please?", "accept": ["Can you repeat that, please?", "Sorry, could you repeat that?", "Could you say that again, please?", "Sorry, I don't understand."] }
+          ],
+          "wrong": ["Yes, that's right.", "I don't know.", "How do you say this in English?"],
+          "extraTiles": ["very", "do"],
+          "hint": "Эмма говорит слишком быстро. Попросите её говорить помедленнее или повторить.",
+          "ru": "Говорите, пожалуйста, помедленнее.",
+          "why": "Вы не успели понять. Попросите говорить медленнее: Can you speak more slowly, please?"
+        },
+        "next": "a5"
+      },
+      {
+        "id": "a5",
+        "npc": "Sorry! Your teacher is Mr Thompson.",
+        "ru": "Простите! Ваш преподаватель — мистер Томпсон.",
+        "reply": {
+          "answers": [{ "say": "How do you spell that?", "accept": ["How do you spell it?", "Can you spell that, please?", "Could you spell that, please?"] }],
+          "wrong": ["I don't know.", "Yes, that's right.", "What does \"map\" mean?"],
+          "extraTiles": ["say", "is"],
+          "hint": "Спросите, как пишется фамилия.",
+          "ru": "Как это пишется?",
+          "why": "Чтобы записать фамилию, спросите, как она пишется: How do you spell that?"
+        },
+        "next": "a6"
+      },
+      {
+        "id": "a6",
+        "npc": "T, H, O, M, P, S, O, N. Thompson. And here's your book.",
+        "ru": "T, H, O, M, P, S, O, N. Томпсон. А вот ваш учебник.",
+        "reply": {
+          "answers": [{ "say": "Thank you!", "accept": ["Thanks!", "Thank you very much!", "Thanks a lot!", "Thank you, Emma!"] }],
+          "wrong": ["Sorry, I don't understand.", "How do you spell that?", "I think."],
+          "extraTiles": ["think", "very"],
+          "hint": "Поблагодарите Эмму.",
+          "ru": "Спасибо!",
+          "why": "Вам дали учебник — поблагодарите: Thank you!"
+        },
+        "next": "a7"
+      },
+      {
+        "id": "a7",
+        "npc": "You're welcome. See you on Wednesday!",
+        "ru": "Пожалуйста. До встречи в среду!",
+        "end": true
+      }
+    ]
+  }
+}

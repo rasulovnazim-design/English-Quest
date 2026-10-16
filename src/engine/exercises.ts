@@ -1,13 +1,13 @@
 // Turns a lesson's steps into concrete exercises.
 
 import type { AuthoredExercise, Category, GrammarPoint, Item, Lesson, Step } from './types';
-import { allItems, itemKey } from '../data';
+import { allItems, itemKey, groupOf, type ItemGroup } from '../data';
 import { speakingEnabled } from './speech';
 
 export interface ItemRef {
   key: string;
   item: Item;
-  isPhrase: boolean;
+  group: ItemGroup;
 }
 
 export type Exercise =
@@ -59,18 +59,17 @@ export function acceptedFor(item: Item): string[] {
 }
 
 export function refsFor(cat: Category, ids: string[]): ItemRef[] {
-  const phraseIds = new Set(cat.phrases.map((p) => p.id));
   const all = allItems(cat);
   return ids.map((id) => {
     const item = all.find((x) => x.id === id);
     if (!item) throw new Error(`Lesson refers to unknown item "${id}" in ${cat.id}`);
-    return { key: itemKey(cat.id, id), item, isPhrase: phraseIds.has(id) };
+    return { key: itemKey(cat.id, id), item, group: groupOf(cat, id) };
   });
 }
 
 function distractors(target: ItemRef, pool: ItemRef[], n: number, by: (r: ItemRef) => string): string[] {
   const seen = new Set([by(target).toLowerCase()]);
-  const same = pool.filter((r) => r.isPhrase === target.isPhrase);
+  const same = pool.filter((r) => r.group === target.group);
   const out: string[] = [];
   for (const r of shuffle(same.length >= n + 1 ? same : pool)) {
     const v = by(r);
@@ -128,6 +127,8 @@ export function buildAuthored(ex: AuthoredExercise): Exercise {
         why: ex.why
       };
     }
+    case 'dictation':
+      return { kind: 'type', mode: 'dictation', prompt: ex.ru, audio: ex.say, accepted: [ex.en, ...(ex.alt ?? [])] };
     case 'translate':
       return { kind: 'type', mode: 'translate', prompt: ex.ru, accepted: [ex.en, ...(ex.alt ?? [])], why: ex.why };
   }

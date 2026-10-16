@@ -29,7 +29,15 @@ export function itemKey(catId: string, itemId: string) {
 }
 
 export function allItems(cat: Category): Item[] {
-  return [...cat.words, ...cat.phrases];
+  return [...(cat.letters ?? []), ...cat.words, ...cat.phrases];
+}
+
+export type ItemGroup = 'letter' | 'word' | 'phrase';
+
+export function groupOf(cat: Category, id: string): ItemGroup {
+  if (cat.phrases.some((p) => p.id === id)) return 'phrase';
+  if (cat.letters?.some((l) => l.id === id)) return 'letter';
+  return 'word';
 }
 
 export function findItem(key: string): { cat: Category; item: Item; isPhrase: boolean } | undefined {
@@ -40,6 +48,8 @@ export function findItem(key: string): { cat: Category; item: Item; isPhrase: bo
   if (word) return { cat, item: word, isPhrase: false };
   const phrase = cat.phrases.find((p) => p.id === itemId);
   if (phrase) return { cat, item: phrase, isPhrase: true };
+  const letter = cat.letters?.find((l) => l.id === itemId);
+  if (letter) return { cat, item: letter, isPhrase: false };
   return undefined;
 }
 

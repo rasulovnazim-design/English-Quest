@@ -11,6 +11,11 @@ function article(word: string): string {
   return /^[aeiou]/i.test(word.trim()) && !/^(uni|eu|one|use)/i.test(word.trim()) ? 'an' : 'a';
 }
 
+/** "Anna" → "A, N, N, A" */
+export function spell(word: string): string {
+  return word.replace(/[^\p{L}]/gu, '').toUpperCase().split('').join(', ');
+}
+
 const titleCase = (s: string) => s.replace(/\b\p{L}/gu, (c) => c.toUpperCase());
 
 /** Template variables from the learner's profile, with sensible defaults. */
@@ -25,7 +30,8 @@ export function profileVars(p: Profile): Vars {
     job,
     a_job: `${article(job)} ${job}`,
     nationality: country?.nationality[0] ?? 'Russian',
-    language: country?.language[0] ?? 'Russian'
+    language: country?.language[0] ?? 'Russian',
+    spelled: spell(p.name.trim() || 'Alex')
   };
 }
 
@@ -46,6 +52,14 @@ export function varsFromSlots(values: Partial<Record<Slot, string>>, vars: Vars)
       out.nationality = c.nationality[0];
       out.language = c.language[0];
     }
+  }
+  if (values.letters) {
+    out.spelled = values.letters
+      .toUpperCase()
+      .replace(/DOUBLE ([A-Z])/g, 'double $1')
+      .split(' ')
+      .reduce<string[]>((acc, w) => (acc.length && acc[acc.length - 1] === 'double' ? [...acc.slice(0, -1), `double ${w}`] : [...acc, w]), [])
+      .join(', ');
   }
   if (values.job) {
     out.job = values.job;

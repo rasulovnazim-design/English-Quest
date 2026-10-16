@@ -105,7 +105,7 @@ function compareOne(answer: string, target: string, loose: boolean): Compare {
   const na = normalize(answer);
   const nt = normalize(target);
   if (na === nt) return { status: 'correct', typos: [], distance: 0 };
-  if (na.replace(/ /g, '') === nt.replace(/ /g, '')) {
+  if (na.replace(/ /g, '') === nt.replace(/ /g, '') && Math.abs(tokens(na).length - tokens(nt).length) <= 1) {
     return { status: 'typo', typos: [{ wrong: answer.trim(), right: target }], distance: 1 };
   }
   const ta = tokens(na);

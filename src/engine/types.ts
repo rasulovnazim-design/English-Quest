@@ -58,6 +58,14 @@ export type AuthoredExercise =
       why?: string;
     }
   | {
+      type: 'dictation';
+      /** What is spoken (e.g. spelled letters "C, A, T"). */
+      say: string;
+      en: string;
+      ru: string;
+      alt?: string[];
+    }
+  | {
       type: 'translate';
       ru: string;
       en: string;
@@ -106,6 +114,7 @@ export type Slot =
   | 'language'
   | 'number'
   | 'phone'
+  | 'letters'
   | 'any';
 
 export interface BossAnswer {
@@ -165,6 +174,8 @@ export interface Category {
   grammar: GrammarPoint;
   words: Item[];
   phrases: Item[];
+  /** Optional extra items such as the letters of the alphabet. */
+  letters?: Item[];
   mistakes: Mistake[];
   lessons: Lesson[];
   boss: Boss;

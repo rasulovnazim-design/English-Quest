@@ -1,0 +1,331 @@
+{
+  "id": "greetings",
+  "stage": 1,
+  "order": 2,
+  "title": "Приветствие и знакомство",
+  "titleEn": "Greetings and introductions",
+  "emoji": "👋",
+  "description": "Как поздороваться, представиться, спросить, как дела, и попрощаться.",
+  "grammar": {
+    "title": "Глагол to be: am, is, are",
+    "titleEn": "To be: am, is, are",
+    "explanation": [
+      "По-русски мы говорим «Я Анна», «Она моя коллега» — без глагола. В английском так нельзя: после подлежащего обязательно нужен глагол to be («быть»). У него три формы в настоящем времени: am, is, are.",
+      "I → am. He, she, it → is. You, we, they → are.",
+      "В разговоре формы почти всегда сокращают: I'm, you're, he's, she's, it's, we're, they're. Полная форма звучит официально или подчёркнуто.",
+      "Представляются так: I'm Ivan или My name's Ivan (дословно «моё имя есть Иван»)."
+    ],
+    "table": [
+      { "en": "I am → I'm", "ru": "я" },
+      { "en": "you are → you're", "ru": "ты, вы" },
+      { "en": "he is → he's", "ru": "он" },
+      { "en": "she is → she's", "ru": "она" },
+      { "en": "it is → it's", "ru": "это, он, она (о предмете)" },
+      { "en": "we are → we're", "ru": "мы" },
+      { "en": "they are → they're", "ru": "они" }
+    ],
+    "examples": [
+      { "en": "I'm Anna.", "ru": "Я Анна." },
+      { "en": "She's my colleague.", "ru": "Она моя коллега." },
+      { "en": "We're friends.", "ru": "Мы друзья." },
+      { "en": "How are you?", "ru": "Как дела? (дословно «Как вы есть?»)" }
+    ]
+  },
+  "words": [
+    { "id": "hello", "en": "hello", "ru": "здравствуйте; привет", "ipa": "/həˈləʊ/", "emoji": "👋" },
+    { "id": "hi", "en": "hi", "ru": "привет", "ipa": "/haɪ/", "emoji": "🙋", "note": "Неформально, но подходит почти всегда — даже на работе." },
+    { "id": "good-morning", "en": "good morning", "ru": "доброе утро", "ipa": "/ɡʊd ˈmɔːnɪŋ/", "emoji": "🌅", "alt": ["morning"] },
+    { "id": "good-afternoon", "en": "good afternoon", "ru": "добрый день", "ipa": "/ɡʊd ˌɑːftəˈnuːn/", "emoji": "☀️", "note": "Примерно с 12 до 18 часов." },
+    { "id": "good-evening", "en": "good evening", "ru": "добрый вечер", "ipa": "/ɡʊd ˈiːvnɪŋ/", "emoji": "🌆" },
+    { "id": "goodbye", "en": "goodbye", "ru": "до свидания", "ipa": "/ɡʊdˈbaɪ/", "emoji": "🤚", "alt": ["good bye"] },
+    { "id": "bye", "en": "bye", "ru": "пока", "ipa": "/baɪ/", "emoji": "✌️", "alt": ["bye bye"] },
+    { "id": "name", "en": "name", "ru": "имя", "ipa": "/neɪm/", "emoji": "📛" },
+    { "id": "surname", "en": "surname", "ru": "фамилия", "ipa": "/ˈsɜːneɪm/", "emoji": "🪪", "us": "last name", "alt": ["family name"] },
+    { "id": "please", "en": "please", "ru": "пожалуйста (при просьбе)", "ipa": "/pliːz/", "emoji": "🙏" },
+    { "id": "thanks", "en": "thanks", "ru": "спасибо", "ipa": "/θæŋks/", "emoji": "😊", "note": "Чуть менее формально, чем thank you.", "alt": ["thank you"] },
+    { "id": "sorry", "en": "sorry", "ru": "извините, простите", "ipa": "/ˈsɒri/", "emoji": "😔" },
+    { "id": "excuse-me", "en": "excuse me", "ru": "простите (чтобы обратиться)", "ipa": "/ɪkˈskjuːz miː/", "emoji": "✋", "note": "Чтобы привлечь внимание или попросить пропустить." },
+    { "id": "yes", "en": "yes", "ru": "да", "ipa": "/jes/", "emoji": "✅" },
+    { "id": "no", "en": "no", "ru": "нет", "ipa": "/nəʊ/", "emoji": "❌" },
+    { "id": "fine", "en": "fine", "ru": "хорошо, нормально", "ipa": "/faɪn/", "emoji": "👌" },
+    { "id": "great", "en": "great", "ru": "отлично", "ipa": "/ɡreɪt/", "emoji": "🤩" },
+    { "id": "friend", "en": "friend", "ru": "друг, подруга", "ipa": "/frend/", "emoji": "🤝" },
+    { "id": "colleague", "en": "colleague", "ru": "коллега", "ipa": "/ˈkɒliːɡ/", "emoji": "🧑‍💼" },
+    { "id": "mr", "en": "Mr", "ru": "господин (перед фамилией мужчины)", "ipa": "/ˈmɪstə/", "emoji": "👨", "say": "Mister", "us": "Mr.", "alt": ["mister"] },
+    { "id": "mrs", "en": "Mrs", "ru": "госпожа (перед фамилией замужней женщины)", "ipa": "/ˈmɪsɪz/", "emoji": "👩", "say": "Missis", "us": "Mrs." },
+    { "id": "ms", "en": "Ms", "ru": "госпожа (перед фамилией любой женщины)", "ipa": "/mɪz/", "emoji": "👩‍💼", "say": "Miz", "us": "Ms.", "note": "Нейтральное обращение: не говорит, замужем ли женщина." }
+  ],
+  "phrases": [
+    { "id": "hi-im", "en": "Hi, I'm Anna.", "ru": "Привет, я Анна.", "ipa": "/haɪ aɪm ˈænə/", "alt": ["Hello, I'm Anna.", "Hi, I am Anna.", "Hello, I am Anna."] },
+    { "id": "my-name", "en": "My name's Ivan.", "ru": "Меня зовут Иван.", "ipa": "/maɪ neɪmz ˈaɪvən/", "alt": ["My name is Ivan."] },
+    { "id": "whats-name", "en": "What's your name?", "ru": "Как вас зовут?", "ipa": "/wɒts jɔː neɪm/", "alt": ["What is your name?"] },
+    { "id": "nice-meet", "en": "Nice to meet you.", "ru": "Приятно познакомиться.", "ipa": "/naɪs tə ˈmiːt juː/", "alt": ["Pleased to meet you.", "Lovely to meet you.", "Good to meet you."] },
+    { "id": "nice-meet-too", "en": "Nice to meet you too.", "ru": "Мне тоже очень приятно.", "ipa": "/naɪs tə ˈmiːt juː tuː/", "alt": ["You too.", "Nice to meet you, too.", "Pleased to meet you too.", "Lovely to meet you too."] },
+    { "id": "how-are-you", "en": "How are you?", "ru": "Как дела? Как поживаете?", "ipa": "/haʊ ɑː juː/", "alt": ["How are you doing?"] },
+    { "id": "fine-thanks", "en": "I'm fine, thanks. And you?", "ru": "Хорошо, спасибо. А у вас?", "ipa": "/aɪm faɪn θæŋks ənd juː/", "alt": ["Fine, thanks. And you?", "I'm fine, thank you. And you?", "I'm good, thanks. And you?", "I'm fine, thanks. How are you?", "Fine, thanks. How about you?"] },
+    { "id": "not-bad", "en": "Not bad, thanks.", "ru": "Неплохо, спасибо.", "ipa": "/nɒt ˈbæd θæŋks/", "alt": ["Not bad, thank you.", "Not too bad, thanks."] },
+    { "id": "this-is", "en": "This is my friend Olga.", "ru": "Это моя подруга Ольга.", "ipa": "/ðɪs ɪz maɪ frend ˈɒlɡə/", "alt": ["This is my friend, Olga.", "This is Olga, my friend."] },
+    { "id": "see-you", "en": "See you later!", "ru": "Увидимся! До встречи!", "ipa": "/ˈsiː juː ˈleɪtə/", "alt": ["See you!", "See you soon!"] },
+    { "id": "nice-day", "en": "Have a nice day!", "ru": "Хорошего дня!", "ipa": "/hæv ə naɪs ˈdeɪ/", "alt": ["Have a good day!", "Have a lovely day!"] }
+  ],
+  "mistakes": [
+    {
+      "title": "Не пропускайте am, is, are",
+      "text": "В русском «Я Иван», «Она моя подруга» — без глагола. В английском глагол to be обязателен.",
+      "wrong": "I Ivan. She my friend.",
+      "right": "I'm Ivan. She's my friend."
+    },
+    {
+      "title": "How are you? — это приветствие",
+      "text": "How are you? — часть приветствия, а не вопрос о здоровье. Отвечают коротко и спрашивают в ответ. Рассказывать о проблемах не принято — разве что близким друзьям.",
+      "wrong": "So-so, I have many problems at work…",
+      "right": "Fine, thanks. And you?"
+    },
+    {
+      "title": "Good morning, afternoon, evening",
+      "text": "Good morning — до полудня, good afternoon — примерно с 12 до 18, good evening — вечером. Good night — это не приветствие, а «спокойной ночи».",
+      "wrong": "Good night! (при встрече вечером)",
+      "right": "Good evening!"
+    },
+    {
+      "title": "«Добрый день» — не Good day",
+      "text": "Good day звучит старомодно (кроме Австралии). Днём говорят Hello или Good afternoon.",
+      "wrong": "Good day, colleagues!",
+      "right": "Good afternoon, everyone!"
+    },
+    {
+      "title": "Excuse me и sorry",
+      "text": "Excuse me — чтобы привлечь внимание или попросить пропустить. Sorry — чтобы извиниться или переспросить, если не расслышали.",
+      "wrong": "Sorry, where is the station? (чтобы обратиться)",
+      "right": "Excuse me, where is the station?"
+    },
+    {
+      "title": "Mr, Mrs и Ms — перед фамилией",
+      "text": "Обращения Mr, Mrs и Ms ставят перед фамилией, а не перед именем. К учителю или начальнику часто обращаются именно так.",
+      "wrong": "Mr John",
+      "right": "Mr Smith"
+    },
+    {
+      "title": "Одно слово you — и «ты», и «вы»",
+      "text": "В английском нет разницы между «ты» и «вы». Вежливость передают словами please и thank you, вопросами вроде Could you…? и мягкой интонацией.",
+      "wrong": "Give me your name.",
+      "right": "Could you tell me your name, please?"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "1",
+      "title": "Привет и пока",
+      "titleEn": "Hello and goodbye",
+      "items": ["hello", "hi", "good-morning", "good-afternoon", "good-evening", "goodbye", "bye", "see-you", "nice-day"],
+      "steps": [
+        "intro",
+        "match",
+        "listen",
+        "listen",
+        "meaning",
+        { "type": "choose", "prompt": "Сейчас 15:00. Как поздороваться с коллегой?", "answer": "Good afternoon!", "options": ["Good morning!", "Good night!", "Good day!"], "why": "Примерно с 12 до 18 часов говорят Good afternoon. Good night — это «спокойной ночи»." },
+        { "type": "choose", "prompt": "Сейчас 20:00. Вы пришли в гости. Что сказать?", "answer": "Good evening!", "options": ["Good night!", "Good afternoon!", "Goodbye!"], "why": "Вечером при встрече говорят Good evening. Good night — только на прощание перед сном." },
+        "flash-en",
+        "listen",
+        { "type": "gap", "en": "See you ___!", "ru": "Увидимся!", "answer": "later", "options": ["after", "late", "soon later"], "why": "Устойчивая фраза: See you later!" },
+        { "type": "tiles", "en": "Have a nice day!", "ru": "Хорошего дня!", "extra": ["good", "is"], "alt": ["Have a good day!"] },
+        "flash-ru",
+        "dictation",
+        "dictation",
+        "speak"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Как вас зовут?",
+      "titleEn": "What's your name?",
+      "items": ["name", "surname", "mr", "mrs", "ms", "hi-im", "my-name", "whats-name"],
+      "steps": [
+        "intro",
+        "meaning",
+        "listen",
+        "listen",
+        "grammar",
+        { "type": "gap", "en": "I ___ Ivan.", "ru": "Я Иван.", "answer": "am", "alt": ["'m"], "options": ["is", "are", "be"], "why": "С I всегда am: I am = I'm." },
+        { "type": "gap", "en": "My name ___ Olga.", "ru": "Меня зовут Ольга.", "answer": "is", "alt": ["'s"], "options": ["am", "are", "be"], "why": "My name — это «оно», поэтому is: My name is Olga." },
+        { "type": "gap", "en": "What ___ your name?", "ru": "Как вас зовут?", "answer": "is", "alt": ["'s"], "options": ["are", "am", "do"], "why": "What is your name? В вопросе is стоит сразу после What." },
+        { "type": "tiles", "en": "What's your name?", "ru": "Как вас зовут?", "extra": ["you", "is"], "alt": ["What is your name?"] },
+        { "type": "tiles", "en": "My name is Ivan.", "ru": "Меня зовут Иван.", "extra": ["am", "me"] },
+        { "type": "choose", "prompt": "Как правильно обратиться к женщине по фамилии Brown, если вы не знаете, замужем ли она?", "answer": "Ms Brown", "options": ["Mrs Brown", "Mr Brown", "Ms Anna"], "why": "Ms — нейтральное обращение. Ставится перед фамилией, а не перед именем." },
+        { "type": "translate", "ru": "Я Анна.", "en": "I'm Anna.", "alt": ["My name's Anna.", "My name is Anna."], "why": "«Я Анна» — I'm Anna: глагол am пропускать нельзя." },
+        { "type": "translate", "ru": "Как вас зовут?", "en": "What's your name?", "alt": ["What is your name?"] },
+        "flash-ru",
+        "speak"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Как дела?",
+      "titleEn": "How are you?",
+      "items": ["fine", "great", "thanks", "sorry", "yes", "no", "how-are-you", "fine-thanks", "not-bad"],
+      "steps": [
+        "intro",
+        "match",
+        "listen",
+        "meaning",
+        "listen",
+        { "type": "choose", "prompt": "Коллега спросил: How are you? Как лучше ответить?", "answer": "Fine, thanks. And you?", "options": ["I have many problems.", "Yes, I am.", "I'm Anna."], "why": "How are you? — часть приветствия. Отвечают коротко и спрашивают в ответ." },
+        { "type": "gap", "en": "How ___ you?", "ru": "Как дела?", "answer": "are", "options": ["is", "am", "do"], "why": "С you всегда are: How are you?" },
+        { "type": "gap", "en": "I'm fine, thanks. And ___?", "ru": "Хорошо, спасибо. А у вас?", "answer": "you", "options": ["your", "me", "I"], "why": "«А у вас?» — And you?" },
+        { "type": "tiles", "en": "I'm fine, thanks. And you?", "ru": "Хорошо, спасибо. А у вас?", "extra": ["your", "am"], "alt": ["I'm fine, thanks, and you?"] },
+        "flash-en",
+        { "type": "translate", "ru": "Как дела?", "en": "How are you?", "alt": ["How are you doing?"], "why": "Дословно «Как вы есть?» — How are you?" },
+        { "type": "translate", "ru": "Неплохо, спасибо.", "en": "Not bad, thanks.", "alt": ["Not bad, thank you."] },
+        "dictation",
+        "dictation",
+        "speak"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Приятно познакомиться",
+      "titleEn": "Nice to meet you",
+      "items": ["please", "excuse-me", "friend", "colleague", "nice-meet", "nice-meet-too", "this-is"],
+      "steps": [
+        "intro",
+        "match",
+        "listen",
+        "meaning",
+        { "type": "gap", "en": "This ___ my friend Olga.", "ru": "Это моя подруга Ольга.", "answer": "is", "alt": ["'s"], "options": ["am", "are", "it"], "why": "This is — «это (есть)»: This is my friend." },
+        { "type": "gap", "en": "She ___ my colleague.", "ru": "Она моя коллега.", "answer": "is", "alt": ["'s"], "options": ["are", "am", "be"], "why": "С he, she, it — is." },
+        { "type": "gap", "en": "We ___ friends.", "ru": "Мы друзья.", "answer": "are", "alt": ["'re"], "options": ["is", "am", "be"], "why": "С we, you, they — are." },
+        { "type": "choose", "prompt": "Вы хотите обратиться к незнакомцу на улице. Что сказать сначала?", "answer": "Excuse me…", "options": ["Sorry…", "Hello, friend…", "Please…"], "why": "Чтобы привлечь внимание, говорят Excuse me. Sorry — это извинение." },
+        { "type": "tiles", "en": "Nice to meet you too.", "ru": "Мне тоже очень приятно.", "extra": ["me", "to"] },
+        { "type": "tiles", "en": "This is my colleague Tom.", "ru": "Это мой коллега Том.", "extra": ["are", "me"], "alt": ["This is Tom, my colleague."] },
+        "flash-ru",
+        { "type": "translate", "ru": "Приятно познакомиться.", "en": "Nice to meet you.", "alt": ["Pleased to meet you.", "Lovely to meet you."] },
+        { "type": "translate", "ru": "Она моя подруга.", "en": "She's my friend.", "alt": ["She is my friend."], "why": "«Она моя подруга» — She's my friend: is обязателен." },
+        "dictation",
+        "speak",
+        "speak"
+      ]
+    }
+  ],
+  "boss": {
+    "character": "Tom",
+    "role": "новый коллега",
+    "avatar": "👨🏻‍💻",
+    "voice": "male",
+    "scene": "Первый день на новой работе в лондонском офисе. К вашему столу подходит коллега, чтобы познакомиться.",
+    "start": "g1",
+    "nodes": [
+      {
+        "id": "g1",
+        "npc": "Hi there! I'm Tom.",
+        "ru": "Привет! Я Том.",
+        "reply": {
+          "answers": [{ "say": "Hi, I'm {name}.", "patterns": ["[hi|hello|hey|good morning|good afternoon]? [tom]? [i am|my name is]? {name}"] }],
+          "wrong": ["I {name}.", "Goodbye, {name}.", "My name {name}."],
+          "extraTiles": ["am", "name"],
+          "hint": "Поздоровайтесь и назовите своё имя: Hi, I'm …",
+          "ru": "Привет, я …",
+          "why": "Представляясь, не пропускайте am: I'm Anna или My name is Anna."
+        },
+        "next": "g2"
+      },
+      {
+        "id": "g2",
+        "npc": "Nice to meet you, {name}.",
+        "ru": "Приятно познакомиться, {name}.",
+        "reply": {
+          "answers": [{ "say": "Nice to meet you too.", "accept": ["You too.", "Nice to meet you, too.", "Pleased to meet you too.", "Nice to meet you too, Tom.", "Nice to meet you, Tom.", "Lovely to meet you too."] }],
+          "wrong": ["Nice to meet me.", "I'm fine, thanks.", "Goodbye, Tom."],
+          "extraTiles": ["me", "is"],
+          "hint": "Ответьте: «Мне тоже приятно».",
+          "ru": "Мне тоже очень приятно.",
+          "why": "На Nice to meet you отвечают Nice to meet you too или просто You too."
+        },
+        "next": "g3"
+      },
+      {
+        "id": "g3",
+        "npc": "So, how are you?",
+        "ru": "Ну, как дела?",
+        "reply": {
+          "answers": [
+            { "say": "I'm fine, thanks. And you?", "accept": ["Fine, thanks. And you?", "I'm fine, thank you. And you?", "I'm good, thanks. And you?", "Fine, thanks, and you?", "I'm fine, thanks. How are you?", "Fine, thanks. How about you?", "I'm great, thanks. And you?", "Great, thanks. And you?"] },
+            { "say": "Not bad, thanks. And you?", "accept": ["Not bad. And you?", "Not bad, thank you. And you?", "Not bad, thanks. How are you?", "Not bad, thanks."] }
+          ],
+          "wrong": ["I'm Tom.", "Yes, I am.", "I have fine."],
+          "extraTiles": ["your", "am"],
+          "hint": "Ответьте коротко и спросите в ответ: Fine, thanks. And you?",
+          "ru": "Хорошо, спасибо. А у тебя?",
+          "why": "How are you? — часть приветствия. Отвечают коротко и спрашивают в ответ: Fine, thanks. And you?"
+        },
+        "next": "g4"
+      },
+      {
+        "id": "g4",
+        "npc": "I'm great, thanks. Oh, and this is Sarah. She's our manager.",
+        "ru": "Отлично, спасибо. О, а это Сара. Она наш менеджер.",
+        "reply": {
+          "answers": [{ "say": "Hello, Sarah. Nice to meet you.", "accept": ["Hi, Sarah. Nice to meet you.", "Nice to meet you, Sarah.", "Hello, nice to meet you.", "Hi, nice to meet you.", "Hello, Sarah. Pleased to meet you.", "Hi Sarah, lovely to meet you.", "Hello, Sarah!", "Hi, Sarah!"] }],
+          "wrong": ["Goodbye, Sarah.", "I'm Sarah.", "Sarah is my friend."],
+          "extraTiles": ["meet", "me"],
+          "hint": "Поздоровайтесь с Сарой и скажите, что вам приятно познакомиться.",
+          "ru": "Здравствуйте, Сара. Приятно познакомиться.",
+          "why": "Вас знакомят с Сарой — поздоровайтесь: Hello, Sarah. Nice to meet you."
+        },
+        "next": "g5"
+      },
+      {
+        "id": "g5",
+        "npc": "Sorry, what's your name again?",
+        "ru": "Прости, напомни, как тебя зовут?",
+        "reply": {
+          "answers": [{ "say": "My name's {name}.", "patterns": ["[sorry|no problem|it is ok]? [i am|my name is|it is]? {name}"] }],
+          "wrong": ["My name {name}.", "I'm fine, thanks.", "Nice to meet you too."],
+          "extraTiles": ["am", "me"],
+          "hint": "Ещё раз назовите имя: My name's …",
+          "ru": "Меня зовут …",
+          "why": "Том забыл ваше имя. Назовите его ещё раз: My name's … или I'm …"
+        },
+        "next": "g6"
+      },
+      {
+        "id": "g6",
+        "npc": "{name}. Got it! Tea or coffee?",
+        "ru": "{name}. Запомнил! Чай или кофе?",
+        "reply": {
+          "answers": [
+            { "say": "Coffee, please.", "accept": ["A coffee, please.", "Coffee please.", "Coffee, thanks.", "Coffee, thank you.", "Coffee."], "next": "g7c" },
+            { "say": "Tea, please.", "accept": ["A tea, please.", "Tea please.", "Tea, thanks.", "Tea, thank you.", "Tea."], "next": "g7t" },
+            { "say": "No, thanks.", "accept": ["No, thank you.", "Nothing, thanks.", "I'm fine, thanks."], "next": "g7n" }
+          ],
+          "wrong": ["Yes, I am.", "Coffee, sorry."],
+          "extraTiles": ["sorry", "is"],
+          "hint": "Выберите чай (tea) или кофе (coffee) и добавьте please.",
+          "ru": "Кофе, пожалуйста.",
+          "why": "Том предлагает чай или кофе. Ответьте: Coffee, please или Tea, please."
+        }
+      },
+      { "id": "g7c", "npc": "Good choice! The coffee here is great.", "ru": "Хороший выбор! Кофе здесь отличный.", "next": "g8" },
+      { "id": "g7t", "npc": "Tea? Very British! Good choice.", "ru": "Чай? Очень по-британски! Хороший выбор.", "next": "g8" },
+      { "id": "g7n", "npc": "OK, no problem.", "ru": "Хорошо, без проблем.", "next": "g8" },
+      {
+        "id": "g8",
+        "npc": "Right, I've got a meeting. See you later, {name}!",
+        "ru": "Так, у меня совещание. Ещё увидимся, {name}!",
+        "reply": {
+          "answers": [
+            { "say": "See you later, Tom!", "accept": ["See you later!", "See you!", "See you, Tom!", "Bye, Tom!", "Bye!", "Goodbye!", "Goodbye, Tom!", "Bye! See you later!"] },
+            { "say": "Bye! Have a nice day!", "accept": ["Have a nice day!", "Have a good day!", "Bye, have a nice day!", "Have a nice day, Tom!"] }
+          ],
+          "wrong": ["Good morning, Tom!", "Nice to meet you too.", "Hello, Tom!"],
+          "extraTiles": ["after", "me"],
+          "hint": "Попрощайтесь: See you later! или Bye!",
+          "ru": "Увидимся, Том!",
+          "why": "Том уходит — попрощайтесь: See you later! или Bye!"
+        },
+        "next": "g9"
+      },
+      { "id": "g9", "npc": "Bye!", "ru": "Пока!", "end": true }
+    ]
+  }
+}

@@ -42,11 +42,21 @@ export const SLOT_RE: Record<Slot, string> = {
   language: `(${LANGUAGE_RE})`,
   number: '(\\d{1,3})',
   phone: '((?:\\d|oh|o|double|triple| )+)',
+  letters: '((?:double )?[a-z](?: (?:double )?[a-z]){1,29})',
   any: '(.+?)'
 };
 
 /** Words that can never be a name/city/job on their own (avoids "I am" matching {name}). */
 const STOP = new Set(['i', 'am', 'is', 'are', 'my', 'name', 'a', 'an', 'the', 'from', 'in', 'live', 'work', 'not', 'yes', 'no']);
+
+/** Everyday words that are never a person's name or a city (so "Thank you" is not taken as a name). */
+const NOT_NAMES = new Set([
+  'you', 'your', 'me', 'he', 'she', 'it', 'we', 'they', 'thank', 'thanks', 'goodbye', 'bye', 'hello', 'hi', 'hey',
+  'fine', 'good', 'great', 'bad', 'sorry', 'please', 'nice', 'meet', 'ok', 'know', 'do', 'does', 'how', 'what', 'where',
+  'spell', 'that', 'this', 'right', 'later', 'see', 'morning', 'afternoon', 'evening', 'night', 'day', 'have', 'has',
+  'very', 'much', 'tea', 'coffee', 'understand', 'repeat', 'slowly', 'speak', 'again', 'too', 'and', 'or', 'with',
+  'to', 'of', 'at', 'on', 'for', 'old', 'years', 'here', 'there', 'friend', 'colleague', 'manager', 'welcome'
+]);
 
 interface Compiled {
   re: RegExp;
@@ -93,7 +103,7 @@ function validSlot(slot: Slot, value: string | undefined): boolean {
     const n = Number(v);
     return n >= 1 && n <= 120;
   }
-  if (slot === 'name' || slot === 'city') return !v.split(' ').some((w) => STOP.has(w));
+  if (slot === 'name' || slot === 'city') return !v.split(' ').some((w) => STOP.has(w) || NOT_NAMES.has(w));
   if (slot === 'job') {
     const words = v.split(' ');
     return !STOP.has(words[0]) && !STOP.has(words[words.length - 1]);
