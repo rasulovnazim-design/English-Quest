@@ -2481,3 +2481,22 @@ h3,
 .forest-view {
   overflow: clip;
 }
+.forest-controls .btn.icon-action {
+  width: 60px;
+  min-height: 64px;
+  font-size: 1.6rem;
+  flex: none;
+  padding: 0;
+}
+.forest-controls .btn.primary {
+  min-width: 0;
+  white-space: nowrap;
+}
+@media (max-width: 430px) {
+  .forest-controls {
+    gap: 6px;
+  }
+  .forest-controls .btn.move {
+    width: 62px;
+  }
+}

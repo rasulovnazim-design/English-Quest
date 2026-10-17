@@ -457,20 +457,22 @@ export function ForestScreen() {
           ◀
         </button>
         {near === 'sawmill' && (
-          <button className="btn primary" onClick={() => setPanel({ kind: 'sawmill' })}>
-            🪚 {t('forest.sawmill')}
+          <button className="btn icon-action" onClick={() => setPanel({ kind: 'sawmill' })} aria-label={t('forest.sawmill')} data-testid="open-sawmill">
+            🪚
           </button>
         )}
         {near === 'shop' && (
-          <button className="btn primary" onClick={() => setPanel({ kind: 'shop' })}>
-            🛒 {t('forest.shop')}
+          <button className="btn icon-action" onClick={() => setPanel({ kind: 'shop' })} aria-label={t('forest.shop')} data-testid="open-shop">
+            🛒
           </button>
         )}
-        {!near && (
-          <button className="btn primary" onClick={bagFull ? () => walkTo(zone.sawmill.x - 10, () => setPanel({ kind: 'sawmill' })) : goNext} data-testid="next-tree">
-            {bagFull ? `🪚 ${t('forest.toSawmill')}` : `🌳 ${t('forest.nextTree')}`}
-          </button>
-        )}
+        <button
+          className="btn primary"
+          onClick={bagFull ? () => walkTo(zone.sawmill.x - 10, () => setPanel({ kind: 'sawmill' })) : goNext}
+          data-testid="next-tree"
+        >
+          {bagFull ? `🪚 ${t('forest.toSawmill')}` : `🌳 ${t('forest.nextTree')}`}
+        </button>
         <button className="btn move" {...holdBtn(1)} aria-label={t('forest.right')}>
           ▶
         </button>
