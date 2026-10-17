@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { categories, lessonKey } from '../data';
 import { buildLesson, isScored, refsFor, type Exercise } from '../engine/exercises';
-import { addXp, completeLesson, getState } from '../engine/store';
+import { addCoins, addXp, completeLesson, getState, setStars, starsFor, useStore } from '../engine/store';
+import { lessonCoins } from '../engine/avatar';
+import { sfx } from '../engine/sfx';
+import { Avatar } from '../components/Avatar';
 import { scoreExercise, XP } from '../engine/xp';
 import { stopSpeaking } from '../engine/speech';
 import { ExerciseView, type Outcome } from '../components/Exercises';
 import { FeedbackSheet } from '../components/Feedback';
-import { Bar, Modal } from '../components/common';
+import { Bar, Confetti, Modal } from '../components/common';
 import { go, href } from '../router';
 import { t } from '../locale';
 
@@ -127,20 +130,38 @@ function LessonDone({
   const idx = cat.lessons.findIndex((l) => l.id === lessonId);
   const nextLesson = cat.lessons[idx + 1];
   const accuracy = stats.answered ? Math.round((stats.right / stats.answered) * 100) : 100;
+  const stars = starsFor(accuracy);
+  const coins = lessonCoins(stars);
+  const look = useStore((x) => x.avatar);
   const saved = useRef(false);
   useEffect(() => {
     if (saved.current) return;
     saved.current = true;
     const lesson = cat.lessons[idx];
     completeLesson(lessonKey(catId, lessonId), accuracy, refsFor(cat, lesson.items).map((r) => r.key));
+    setStars(lessonKey(catId, lessonId), stars);
+    addCoins(coins);
     addXp(XP.lessonDone);
+    sfx.win();
+    setTimeout(() => sfx.coin(), 900);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="page full" data-testid="lesson-done">
       <div className="card levelup">
-        <div className="big">🎉</div>
+        <Confetti />
+        <Avatar look={look} size={130} mood="jump" />
         <h2>{t('lesson.finished')}</h2>
+        <div className="stars-big" aria-label={t('lesson.stars')}>
+          {[1, 2, 3].map((n) => (
+            <span key={n} className={n <= stars ? '' : 'off'}>
+              ⭐
+            </span>
+          ))}
+        </div>
         <p className="xp-pop">{t('lesson.earned', { n: earned + XP.lessonDone })}</p>
+        <p>
+          <span className="coin-reward">🪙 {t('lesson.coins', { n: coins })}</span>
+        </p>
         <p className="muted">{t('lesson.accuracy', { n: accuracy })}</p>
         <div className="stack">
           {nextLesson ? (

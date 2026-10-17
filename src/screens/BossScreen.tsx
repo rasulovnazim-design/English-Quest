@@ -3,7 +3,9 @@ import { categories } from '../data';
 import type { Boss, BossAnswer, BossNode, Profile } from '../engine/types';
 import { checkFree, fill, nodeById, nextNode, profileVars, replyOptions, replyTiles, type Option, type Vars } from '../engine/boss';
 import { checkAnswer, type CheckResult } from '../engine/checker';
-import { addXp, bossRoundCleared, getState, updateProfile, useStore } from '../engine/store';
+import { addCoins, addXp, bossRoundCleared, getState, updateProfile, useStore } from '../engine/store';
+import { BOSS_COINS } from '../engine/avatar';
+import { sfx } from '../engine/sfx';
 import { speak, speakingEnabled, stopSpeaking } from '../engine/speech';
 import { scoreExercise, XP } from '../engine/xp';
 import { COUNTRY_LIST } from '../engine/patterns';
@@ -198,6 +200,7 @@ function BossRound({
   const [status, setStatus] = useState<'playing' | 'won' | 'lost'>('playing');
   const [showRu, setShowRu] = useState(round < 3);
   const [earned, setEarned] = useState(0);
+  const [coinsWon, setCoinsWon] = useState(0);
   const chatEnd = useRef<HTMLDivElement>(null);
   const started = useRef(false);
 
@@ -244,8 +247,13 @@ function BossRound({
     bossRoundCleared(catId, round);
     let bonus = XP.bossRound;
     const nowPassed = isFinal || !!getState().bosses[catId]?.passed;
-    if (nowPassed && !wasPassed) bonus += XP.bossPassed;
+    if (nowPassed && !wasPassed) {
+      bonus += XP.bossPassed;
+      addCoins(BOSS_COINS);
+      setCoinsWon(BOSS_COINS);
+    }
     addXp(bonus);
+    sfx.win();
     setEarned((e) => e + bonus);
   }, [status]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -302,6 +310,11 @@ function BossRound({
           <h2>{passed ? t('boss.passed') : t('boss.roundDone', { n: round })}</h2>
           {passed && <p>{t('boss.passedText')}</p>}
           <p className="xp-pop">{t('lesson.earned', { n: earned })}</p>
+          {coinsWon > 0 && (
+            <p>
+              <span className="coin-reward">🪙 {t('boss.coins', { n: coinsWon })}</span>
+            </p>
+          )}
           <div className="stack">
             {!passed && nextR && (
               <button className="btn primary block" onClick={() => onNext(nextR)} data-testid="next-round">

@@ -166,7 +166,16 @@ export function buildLesson(cat: Category, lesson: Lesson, opts: BuildOptions): 
         out.push({ kind: 'grammar', grammar: cat.grammar });
         break;
       case 'match': {
-        const pick = shuffle(refs).slice(0, 5);
+        // Avoid pairs that would be ambiguous (e.g. hi and hello both mean «привет»).
+        const pick: ItemRef[] = [];
+        const used = new Set<string>();
+        for (const r of shuffle(refs)) {
+          const words = r.item.ru.toLowerCase().split(/[^\p{L}]+/u).filter((w) => w.length > 2);
+          if (words.some((w) => used.has(w))) continue;
+          words.forEach((w) => used.add(w));
+          pick.push(r);
+          if (pick.length === 5) break;
+        }
         const allEmoji = lesson.matchBy === 'emoji' && pick.every((r) => r.item.emoji);
         out.push({
           kind: 'match',

@@ -95,3 +95,24 @@ describe('content files', () => {
     });
   }
 });
+
+describe('match exercises', () => {
+  it('never pairs two items with overlapping Russian meanings', () => {
+    for (const cat of cats) {
+      for (const l of cat.lessons) {
+        for (let run = 0; run < 20; run++) {
+          for (const ex of buildLesson(cat, l, { accent: 'gb', speaking: true })) {
+            if (ex.kind !== 'match') continue;
+            const seen = new Set<string>();
+            for (const p of ex.pairs) {
+              for (const w of new Set(p.ref.item.ru.toLowerCase().split(/[^\p{L}]+/u).filter((x) => x.length > 2))) {
+                expect(seen.has(w), `${cat.id}/${l.id}: "${w}"`).toBe(false);
+                seen.add(w);
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+});

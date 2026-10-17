@@ -10,6 +10,7 @@
 
 English Quest is a free web game for learning English. It is for native Russian speakers. It starts from zero (A0) and goes up to everyday conversation (A2). All menus, instructions and explanations are in Russian. Everything you learn is in English, with Russian translations, and uses British spelling and a British voice by default. You can switch to American in Settings.
 
+- **Made for children:** a bright, blocky look, an obstacle-course map of colourful blocks, a customisable blocky avatar, coins to spend in the avatar shop, 1–3 stars per lesson and game sounds. All graphics are original, drawn in SVG and emoji.
 - **Map in four stages**: First Words → Me and My World → Everyday Life → Out and About, plus a final conversation at the end. Each stage unlocks once the previous one is complete. Within a stage, you can do the categories in any order.
 - **Short lessons** of about 5 minutes. They go from recognising words to producing them yourself:
   - matching words to pictures or Russian
@@ -91,6 +92,7 @@ All learning content is kept apart from the code:
 
 English Quest — бесплатная веб-игра для изучения английского. Она для тех, чей родной язык русский. Курс начинается с нуля (A0) и доводит до свободного бытового разговора (A2). Меню, задания и объяснения — на русском. Всё, что вы учите, — на английском с переводом. По умолчанию используются британское написание и британский голос, а в настройках можно переключиться на американский вариант.
 
+- **Сделано для детей:** яркий «кубический» стиль, карта-полоса препятствий из цветных блоков, собственный персонаж, которого можно наряжать, монетки для магазина персонажа, от 1 до 3 звёзд за урок и звуки в игре. Вся графика оригинальная: SVG и эмодзи.
 - **Карта из четырёх этапов**: «Первые слова» → «Я и мой мир» → «Повседневная жизнь» → «В городе и в пути», а в конце — финальный разговор. Следующий этап открывается, когда пройден предыдущий. Разделы внутри этапа можно проходить в любом порядке.
 - **Короткие уроки** примерно по 5 минут — от узнавания слов к самостоятельной речи:
   - пары «слово — картинка» или «слово — перевод»

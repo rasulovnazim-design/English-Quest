@@ -79,6 +79,18 @@ export function SettingsScreen() {
       </div>
 
       <div className="card">
+        <h2>🔔 {t('settings.sound')}</h2>
+        <div className="seg">
+          <button className={settings.sound ? 'on' : ''} onClick={() => updateSettings({ sound: true })}>
+            {t('settings.soundOn')}
+          </button>
+          <button className={!settings.sound ? 'on' : ''} onClick={() => updateSettings({ sound: false })}>
+            {t('settings.soundOff')}
+          </button>
+        </div>
+      </div>
+
+      <div className="card">
         <h2>{t('settings.goal')}</h2>
         <div className="seg">
           {(Object.keys(DAILY_GOALS) as (keyof typeof DAILY_GOALS)[]).map((g) => (

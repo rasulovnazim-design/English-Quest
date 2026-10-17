@@ -8,6 +8,7 @@ export type Route =
   | { name: 'boss'; id: string }
   | { name: 'phrasebook'; id?: string }
   | { name: 'review' }
+  | { name: 'avatar' }
   | { name: 'settings' };
 
 export function parse(hash: string): Route {
@@ -23,6 +24,8 @@ export function parse(hash: string): Route {
       return { name: 'phrasebook', id: parts[1] };
     case 'review':
       return { name: 'review' };
+    case 'avatar':
+      return { name: 'avatar' };
     case 'settings':
       return { name: 'settings' };
     default:
@@ -44,6 +47,8 @@ export function href(r: Route): string {
       return r.id ? `#/phrasebook/${r.id}` : '#/phrasebook';
     case 'review':
       return '#/review';
+    case 'avatar':
+      return '#/avatar';
     case 'settings':
       return '#/settings';
   }

@@ -1,4 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import { useStore } from '../engine/store';
+import { sfx } from '../engine/sfx';
+import { Avatar } from './Avatar';
 import type { CheckResult } from '../engine/checker';
 import { t } from '../locale';
 import { Corrected, PlayButtons } from './common';
@@ -19,6 +22,15 @@ export function FeedbackSheet({
   continueLabel?: string;
 }) {
   const btn = useRef<HTMLButtonElement>(null);
+  const look = useStore((x) => x.avatar);
+  const cheer = useMemo(() => {
+    const list = t(correct ? 'lesson.cheers' : 'lesson.oops').split('|');
+    return list[Math.floor(Math.random() * list.length)];
+  }, [correct]);
+  useEffect(() => {
+    if (correct) sfx.correct();
+    else sfx.wrong();
+  }, [correct]);
   useEffect(() => {
     btn.current?.focus({ preventScroll: true });
     const on = (e: KeyboardEvent) => {
@@ -40,9 +52,12 @@ export function FeedbackSheet({
     <div className={`sheet ${status}`} role="status" aria-live="polite" data-testid="feedback" data-status={status}>
       <div className="sheet-inner">
         <h3>
-          {status === 'ok' && <>✅ {t('lesson.correct')}</>}
+          <span className="sheet-avatar-inline" aria-hidden="true">
+            <Avatar look={look} size={58} mood={correct ? 'jump' : 'sad'} />
+          </span>
+          {status === 'ok' && <>{cheer}</>}
           {status === 'typo' && <>✍️ {t('lesson.correctTypo')}</>}
-          {status === 'bad' && <>❌ {t('lesson.wrong')}</>}
+          {status === 'bad' && <>{cheer}</>}
           <span className="spacer" />
           {xp > 0 && <span className="xp-pop">{t('xp.plus', { n: xp })}</span>}
         </h3>

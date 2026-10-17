@@ -11,6 +11,16 @@ export interface Settings {
   goal: keyof typeof DAILY_GOALS;
   speaking: boolean;
   voiceURI: string;
+  sound: boolean;
+}
+
+/** The learner's blocky avatar. Values are ids from engine/avatar.ts. */
+export interface AvatarLook {
+  skin: string;
+  shirt: string;
+  pants: string;
+  hat: string;
+  face: string;
 }
 
 export interface State {
@@ -25,6 +35,12 @@ export interface State {
   profile: Profile;
   /** Level the learner has already seen the level-up animation for. */
   seenLevel: number;
+  coins: number;
+  /** Best stars (1–3) per lesson key. */
+  stars: Record<string, number>;
+  avatar: AvatarLook;
+  /** Avatar items bought in the shop. */
+  owned: string[];
 }
 
 const KEY = 'english-quest:v1';
@@ -38,9 +54,13 @@ export function initialState(): State {
     lessons: {},
     bosses: {},
     srs: {},
-    settings: { accent: 'gb', theme: 'auto', goal: 'normal', speaking: true, voiceURI: '' },
+    settings: { accent: 'gb', theme: 'auto', goal: 'normal', speaking: true, voiceURI: '', sound: true },
     profile: { name: '', age: '', country: '', city: '', job: '' },
-    seenLevel: 1
+    seenLevel: 1,
+    coins: 0,
+    stars: {},
+    avatar: { skin: 'sun', shirt: 'blue', pants: 'navy', hat: 'none', face: 'smile' },
+    owned: []
   };
 }
 
@@ -69,7 +89,11 @@ export function validateState(data: unknown): State | null {
     profile: { ...base.profile, ...d.profile },
     lessons: d.lessons ?? {},
     bosses: d.bosses ?? {},
-    srs: d.srs ?? {}
+    srs: d.srs ?? {},
+    stars: d.stars ?? {},
+    owned: d.owned ?? [],
+    coins: typeof d.coins === 'number' ? d.coins : 0,
+    avatar: { ...base.avatar, ...d.avatar }
   } as State;
 }
 
@@ -135,6 +159,31 @@ export function currentStreak(s: State, now = today()): number {
 
 export function dailyXp(s: State, now = today()): number {
   return s.daily.date === now ? s.daily.xp : 0;
+}
+
+/** 3 stars for 90%+, 2 for 70%+, otherwise 1. */
+export function starsFor(accuracy: number): number {
+  return accuracy >= 90 ? 3 : accuracy >= 70 ? 2 : 1;
+}
+
+export function addCoins(n: number) {
+  if (n) set({ ...state, coins: Math.max(0, state.coins + n) });
+}
+
+export function setStars(lessonId: string, stars: number) {
+  set({ ...state, stars: { ...state.stars, [lessonId]: Math.max(state.stars[lessonId] ?? 0, stars) } });
+}
+
+export function updateAvatar(patch: Partial<AvatarLook>) {
+  set({ ...state, avatar: { ...state.avatar, ...patch } });
+}
+
+/** Buys an item if the learner has enough coins. Returns true on success. */
+export function buyItem(id: string, price: number): boolean {
+  if (state.owned.includes(id)) return true;
+  if (state.coins < price) return false;
+  set({ ...state, coins: state.coins - price, owned: [...state.owned, id] });
+  return true;
 }
 
 export function completeLesson(lessonId: string, score: number, itemKeys: string[]) {

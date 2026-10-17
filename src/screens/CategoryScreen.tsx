@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { categories, lessonKey } from '../data';
+import { categories, lessonKey, mapEntries } from '../data';
+import { BLOCK_COLOURS } from './MapScreen';
 import { useStore } from '../engine/store';
 import { bossUnlocked, categoryUnlocked } from '../engine/progress';
 import { GrammarView, MistakesView, Modal } from '../components/common';
@@ -28,7 +29,7 @@ export function CategoryScreen({ id }: { id: string }) {
         <span className="small muted">{t('map.stage', { n: cat.stage })}</span>
       </div>
       <div className="cat-head">
-        <div className="emoji" aria-hidden="true">
+        <div className="emoji" aria-hidden="true" style={{ background: BLOCK_COLOURS[Math.max(0, mapEntries.findIndex((e) => e.id === id)) % BLOCK_COLOURS.length] }}>
           {cat.emoji}
         </div>
         <div>
@@ -55,7 +56,9 @@ export function CategoryScreen({ id }: { id: string }) {
                 {l.titleEn} · {t('category.minutes')}
               </span>
             </span>
-            <span className="muted">›</span>
+            <span className="lesson-stars" aria-label={t('map.stars', { n: s.stars[lessonKey(id, l.id)] ?? 0 })}>
+              {[1, 2, 3].map((n) => (n <= (s.stars[lessonKey(id, l.id)] ?? 0) ? '⭐' : '☆')).join('')}
+            </span>
           </a>
         );
       })}

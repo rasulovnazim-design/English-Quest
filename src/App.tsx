@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRoute, href } from './router';
 import { useStore, currentStreak, dailyXp, levelInfo, markLevelSeen } from './engine/store';
 import { dueKeys } from './engine/srs';
@@ -10,6 +10,9 @@ import { BossScreen } from './screens/BossScreen';
 import { PhrasebookScreen } from './screens/PhrasebookScreen';
 import { ReviewScreen } from './screens/ReviewScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
+import { AvatarScreen } from './screens/AvatarScreen';
+import { Avatar } from './components/Avatar';
+import { sfx } from './engine/sfx';
 import { Confetti } from './components/common';
 import { t } from './locale';
 
@@ -29,13 +32,16 @@ function TopBar() {
     <header className="topbar">
       <div className="topbar-inner">
         <a className="brand" href={href({ name: 'map' })}>
-          <span aria-hidden="true">🗺️</span> {t('app.name')}
+          <span aria-hidden="true">🗺️</span> <span className="brand-txt">{t('app.name')}</span>
         </a>
         <span className="stat streak" title={t('home.streak')}>
           🔥 {currentStreak(s)}
         </span>
+        <span className="stat coins" title={t('avatar.coins', { n: s.coins })}>
+          🪙 {s.coins}
+        </span>
         <span className="stat xp" title={t('home.dailyGoal')}>
-          ⚡ {Math.min(dailyXp(s), goal)}/{goal}
+          ⚡ {Math.min(dailyXp(s), goal)}
         </span>
       </div>
     </header>
@@ -47,6 +53,7 @@ function BottomNav({ active }: { active: string }) {
   const due = dueKeys(srs, undefined, 999).length;
   const items = [
     { name: 'map', ico: '🗺️', label: t('nav.map'), href: href({ name: 'map' }) },
+    { name: 'avatar', ico: '🧍', label: t('nav.avatar'), href: href({ name: 'avatar' }) },
     { name: 'review', ico: '🔁', label: t('nav.review'), href: href({ name: 'review' }), badge: due },
     { name: 'phrasebook', ico: '📖', label: t('nav.phrasebook'), href: href({ name: 'phrasebook' }) },
     { name: 'settings', ico: '⚙️', label: t('nav.settings'), href: href({ name: 'settings' }) }
@@ -74,17 +81,29 @@ function LevelUp() {
   if (level <= s.seenLevel) return null;
   const rank = rankForLevel(level);
   const newRank = rankForLevel(s.seenLevel).key !== rank.key;
+  return <LevelUpView level={level} rankKey={rank.key} rankEmoji={rank.emoji} rankEn={rank.en} newRank={newRank} />;
+}
+
+function LevelUpView({ level, rankKey, rankEmoji, rankEn, newRank }: { level: number; rankKey: string; rankEmoji: string; rankEn: string; newRank: boolean }) {
+  const look = useStore((x) => x.avatar);
+  const played = useRef(false);
+  useEffect(() => {
+    if (played.current) return;
+    played.current = true;
+    sfx.levelUp();
+  }, []);
   return (
     <>
       <Confetti />
       <div className="overlay" onClick={() => markLevelSeen(level)}>
         <div className="modal levelup" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} data-testid="level-up">
-          <div className="big">{newRank ? rank.emoji : '⭐'}</div>
+          <Avatar look={look} size={120} mood="jump" />
+          <div className="big">{newRank ? rankEmoji : '⭐'}</div>
           <h2>{t('levelUp.title')}</h2>
           <p style={{ fontSize: '1.2rem', fontWeight: 700 }}>{t('levelUp.level', { n: level })}</p>
           {newRank && (
             <p>
-              {t('levelUp.rank', { rank: t(`rank.${rank.key}`) })} <span className="muted">({rank.en})</span>
+              {t('levelUp.rank', { rank: t(`rank.${rankKey}`) })} <span className="muted">({rankEn})</span>
             </p>
           )}
           <button className="btn primary block" onClick={() => markLevelSeen(level)}>
@@ -122,6 +141,9 @@ export function App() {
       break;
     case 'settings':
       screen = <SettingsScreen />;
+      break;
+    case 'avatar':
+      screen = <AvatarScreen />;
       break;
   }
   const active = route.name === 'category' ? 'map' : route.name;
