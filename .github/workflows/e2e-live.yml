@@ -1,0 +1,28 @@
+name: Playwright against the live site
+
+# Run by hand (Actions → "Playwright against the live site" → Run workflow) after Cloudflare has deployed.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Live URL to test'
+        required: true
+        default: 'https://english-quest.pages.dev/'
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
+        env:
+          BASE_URL: ${{ inputs.url }}

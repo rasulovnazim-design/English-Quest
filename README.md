@@ -2,7 +2,9 @@
 
 **[🇬🇧 English](#english) · [🇷🇺 Русский](#русский)**
 
-▶️ **Play: https://rasulovnazim-design.github.io/English-Quest/**
+▶️ **Play: https://english-quest.pages.dev/**
+
+© 2026 rasulovnazim-design. All rights reserved — see [LICENSE](LICENSE). / Все права защищены.
 
 ---
 
@@ -42,14 +44,24 @@ You need Node.js 20 or later.
 
 ```bash
 npm install
-npm run dev          # development server: http://localhost:5173/English-Quest/
+npm run dev          # development server: http://localhost:5173/
 npm test             # unit tests (answer checker, personal answers, review scheduling, content files)
 npm run build        # production build in dist/
 npm run e2e          # Playwright tests on iPhone, Android and laptop screen sizes (local build)
-BASE_URL=https://rasulovnazim-design.github.io/English-Quest/ npm run e2e   # the same tests against the live site
+BASE_URL=https://english-quest.pages.dev/ npm run e2e   # the same tests against the live site
 ```
 
-Every push to `main` runs the unit tests, deploys to GitHub Pages and then runs the Playwright tests against the live site (`.github/workflows/deploy.yml`).
+Every push to `main` runs the unit tests and the Playwright tests (`.github/workflows/deploy.yml`). Cloudflare Pages builds and publishes the site by itself. To test the live site, run the workflow **"Playwright against the live site"** from the Actions tab.
+
+### Hosting on Cloudflare Pages
+
+1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose this repository.
+2. Project name: `english-quest`. Production branch: `main`.
+3. Framework preset: **None**. Build command: `npm run build`. Build output directory: `dist`.
+4. Environment variable: `NODE_VERSION` = `22`.
+5. **Save and Deploy.** Every push to `main` is then published to https://english-quest.pages.dev/ automatically.
+
+The repository can then be made private (Settings → General → Danger Zone → Change visibility). The GitHub Pages copy turns itself off when the repository becomes private.
 
 ### Add or correct content
 
@@ -124,14 +136,24 @@ English Quest — бесплатная веб-игра для изучения �
 
 ```bash
 npm install
-npm run dev          # сервер для разработки: http://localhost:5173/English-Quest/
+npm run dev          # сервер для разработки: http://localhost:5173/
 npm test             # модульные тесты (проверка ответов, ответы о себе, повторение, файлы с контентом)
 npm run build        # сборка в папку dist/
 npm run e2e          # тесты Playwright на размерах iPhone, Android и ноутбука (локальная сборка)
-BASE_URL=https://rasulovnazim-design.github.io/English-Quest/ npm run e2e   # те же тесты на опубликованном сайте
+BASE_URL=https://english-quest.pages.dev/ npm run e2e   # те же тесты на опубликованном сайте
 ```
 
-При каждой отправке изменений в `main` запускаются тесты, сайт публикуется на GitHub Pages, а затем тесты Playwright проверяют уже опубликованную версию (`.github/workflows/deploy.yml`).
+При каждой отправке изменений в `main` запускаются модульные тесты и тесты Playwright (`.github/workflows/deploy.yml`). Cloudflare Pages сам собирает и публикует сайт. Чтобы проверить опубликованную версию, запустите на вкладке Actions сценарий **«Playwright against the live site»**.
+
+### Размещение на Cloudflare Pages
+
+1. Панель Cloudflare → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → выберите этот репозиторий.
+2. Название проекта: `english-quest`. Основная ветка: `main`.
+3. Framework preset: **None**. Команда сборки: `npm run build`. Папка с результатом: `dist`.
+4. Переменная окружения: `NODE_VERSION` = `22`.
+5. **Save and Deploy.** После этого каждое изменение в `main` автоматически публикуется на https://english-quest.pages.dev/.
+
+Затем репозиторий можно сделать закрытым (Settings → General → Danger Zone → Change visibility). Копия на GitHub Pages отключится сама, когда репозиторий станет закрытым.
 
 ### Как добавить или исправить материалы
 

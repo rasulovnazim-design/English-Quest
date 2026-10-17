@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import pkg from './package.json';
 
-// GitHub Pages serves the site from /<repo-name>/ (case-sensitive).
-const base = process.env.BASE_PATH ?? '/English-Quest/';
+// Cloudflare Pages serves the site from the root. GitHub Pages needs BASE_PATH=/<repo-name>/ (set in the workflow).
+const base = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
   base,

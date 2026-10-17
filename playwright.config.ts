@@ -1,9 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// BASE_URL=https://rasulovnazim-design.github.io/English-Quest/ npm run e2e   — test the live site
+// BASE_URL=https://english-quest.pages.dev/ npm run e2e   — test the live site
 // npm run e2e                                                              — test a local production build
 const remote = process.env.BASE_URL;
-const baseURL = remote ?? 'http://localhost:4173/English-Quest/';
+const baseURL = remote ?? 'http://localhost:4173/';
 
 export default defineConfig({
   testDir: 'tests/e2e',

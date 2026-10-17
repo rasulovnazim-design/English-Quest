@@ -1,4 +1,7 @@
-name: Test and deploy to GitHub Pages
+name: Test (and deploy to GitHub Pages while the repository is public)
+
+# Cloudflare Pages builds and hosts the site itself from this repository.
+# This workflow checks every push; the GitHub Pages deploy runs only while the repository is public.
 
 on:
   push:
@@ -11,11 +14,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,33 +29,22 @@ jobs:
       - run: npm ci
       - name: Unit tests (answer checker, bosses, content files)
         run: npm test
-      - name: Build
-        run: npm run build
-        env:
-          BASE_PATH: /${{ github.event.repository.name }}/
-      - uses: actions/configure-pages@v5
+      - run: npx playwright install --with-deps chromium
+      - name: Play through the first category on phone and laptop sizes (production build)
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
         with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+          name: playwright-results
+          path: test-results
 
-  deploy:
-    needs: build
+  github-pages:
+    if: ${{ !github.event.repository.private }}
+    needs: test
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-
-  e2e-live:
-    name: Playwright against the live site
-    needs: deploy
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -60,15 +52,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - name: Wait for the new version to be served
-        run: sleep 30
-      - name: Play through the first category on phone and laptop sizes
-        run: npx playwright test
+      - run: npm run build
         env:
-          BASE_URL: ${{ needs.deploy.outputs.page_url }}
-      - uses: actions/upload-artifact@v4
-        if: failure()
+          BASE_PATH: /${{ github.event.repository.name }}/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          name: playwright-results
-          path: test-results
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
