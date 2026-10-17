@@ -1,13 +1,15 @@
 name: Playwright against the live site
 
-# Run by hand (Actions → "Playwright against the live site" → Run workflow) after Cloudflare has deployed.
+# Runs after every push to main (waiting for Cloudflare to publish), or by hand from the Actions tab.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       url:
         description: 'Live URL to test'
         required: true
-        default: 'https://english-quest.pages.dev/'
+        default: 'https://english-quest.rasulovnazim.workers.dev/'
 
 permissions:
   contents: read
@@ -23,6 +25,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - name: Wait for Cloudflare to publish this commit
+        run: sleep 150
       - run: npx playwright test
         env:
-          BASE_URL: ${{ inputs.url }}
+          CI: 'true'
+          BASE_URL: ${{ inputs.url || 'https://english-quest.rasulovnazim.workers.dev/' }}

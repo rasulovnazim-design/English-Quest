@@ -2,7 +2,7 @@
 
 **[🇬🇧 English](#english) · [🇷🇺 Русский](#русский)**
 
-▶️ **Play: https://english-quest.pages.dev/**
+▶️ **Play: https://english-quest.rasulovnazim.workers.dev/**
 
 © 2026 rasulovnazim-design. All rights reserved — see [LICENSE](LICENSE). / Все права защищены.
 
@@ -48,18 +48,14 @@ npm run dev          # development server: http://localhost:5173/
 npm test             # unit tests (answer checker, personal answers, review scheduling, content files)
 npm run build        # production build in dist/
 npm run e2e          # Playwright tests on iPhone, Android and laptop screen sizes (local build)
-BASE_URL=https://english-quest.pages.dev/ npm run e2e   # the same tests against the live site
+BASE_URL=https://english-quest.rasulovnazim.workers.dev/ npm run e2e   # the same tests against the live site
 ```
 
-Every push to `main` runs the unit tests and the Playwright tests (`.github/workflows/deploy.yml`). Cloudflare Pages builds and publishes the site by itself. To test the live site, run the workflow **"Playwright against the live site"** from the Actions tab.
+Every push to `main` runs the unit tests and the Playwright tests (`.github/workflows/deploy.yml`). Cloudflare builds and publishes the site by itself, and a few minutes later the workflow **"Playwright against the live site"** plays through the published game.
 
-### Hosting on Cloudflare Pages
+### Hosting on Cloudflare
 
-1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose this repository.
-2. Project name: `english-quest`. Production branch: `main`.
-3. Framework preset: **None**. Build command: `npm run build`. Build output directory: `dist`.
-4. Environment variable: `NODE_VERSION` = `22`.
-5. **Save and Deploy.** Every push to `main` is then published to https://english-quest.pages.dev/ automatically.
+The site is a Cloudflare Worker that serves the built files as static assets (`wrangler.jsonc`). Cloudflare is connected to this repository: build command `npm run build`, deploy command `npx wrangler deploy`. Every push to `main` is published to https://english-quest.rasulovnazim.workers.dev/ automatically.
 
 The repository can then be made private (Settings → General → Danger Zone → Change visibility). The GitHub Pages copy turns itself off when the repository becomes private.
 
@@ -140,18 +136,14 @@ npm run dev          # сервер для разработки: http://localhos
 npm test             # модульные тесты (проверка ответов, ответы о себе, повторение, файлы с контентом)
 npm run build        # сборка в папку dist/
 npm run e2e          # тесты Playwright на размерах iPhone, Android и ноутбука (локальная сборка)
-BASE_URL=https://english-quest.pages.dev/ npm run e2e   # те же тесты на опубликованном сайте
+BASE_URL=https://english-quest.rasulovnazim.workers.dev/ npm run e2e   # те же тесты на опубликованном сайте
 ```
 
-При каждой отправке изменений в `main` запускаются модульные тесты и тесты Playwright (`.github/workflows/deploy.yml`). Cloudflare Pages сам собирает и публикует сайт. Чтобы проверить опубликованную версию, запустите на вкладке Actions сценарий **«Playwright against the live site»**.
+При каждой отправке изменений в `main` запускаются модульные тесты и тесты Playwright (`.github/workflows/deploy.yml`). Cloudflare сам собирает и публикует сайт, а через несколько минут сценарий **«Playwright against the live site»** проходит опубликованную игру.
 
-### Размещение на Cloudflare Pages
+### Размещение на Cloudflare
 
-1. Панель Cloudflare → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → выберите этот репозиторий.
-2. Название проекта: `english-quest`. Основная ветка: `main`.
-3. Framework preset: **None**. Команда сборки: `npm run build`. Папка с результатом: `dist`.
-4. Переменная окружения: `NODE_VERSION` = `22`.
-5. **Save and Deploy.** После этого каждое изменение в `main` автоматически публикуется на https://english-quest.pages.dev/.
+Сайт работает как Cloudflare Worker, который раздаёт собранные файлы (`wrangler.jsonc`). Cloudflare подключён к этому репозиторию: команда сборки `npm run build`, команда публикации `npx wrangler deploy`. Каждое изменение в `main` автоматически публикуется на https://english-quest.rasulovnazim.workers.dev/.
 
 Затем репозиторий можно сделать закрытым (Settings → General → Danger Zone → Change visibility). Копия на GitHub Pages отключится сама, когда репозиторий станет закрытым.
 
