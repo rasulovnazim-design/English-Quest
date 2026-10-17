@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Exercise, ItemRef } from '../engine/exercises';
 import { englishOf } from '../engine/exercises';
 import { checkAnswer, type CheckResult } from '../engine/checker';
-import { listen, pauseSpeaking, speak, type Listening } from '../engine/speech';
+import { listen, pauseSpeaking, speak, speakRu, type Listening } from '../engine/speech';
 import { useStore } from '../engine/store';
 import { t } from '../locale';
 import { GrammarView, PlayButtons, e2e, E2E } from './common';
@@ -25,6 +25,10 @@ interface Props {
   locked: boolean;
   onSubmit: (o: Outcome) => void;
   onContinue: () => void;
+  /** Play the audio as soon as the question appears (used in the forest, right after a tap). */
+  autoplay?: boolean;
+  /** Read the instruction aloud in Russian first (for children who cannot read yet). */
+  readAloud?: boolean;
 }
 
 export function ExerciseView(props: Props) {
@@ -115,8 +119,14 @@ function useOptionKeys(count: number, onPick: (i: number) => void, enabled: bool
   }, [count, onPick, enabled]);
 }
 
-function Choice({ ex, locked, onSubmit }: Props & { ex: Extract<Exercise, { kind: 'choice' }> }) {
+function Choice({ ex, locked, onSubmit, autoplay, readAloud }: Props & { ex: Extract<Exercise, { kind: 'choice' }> }) {
   const [picked, setPicked] = useState<number | null>(null);
+  useEffect(() => {
+    if (!autoplay || !ex.audio || (ex.mode !== 'listen' && ex.mode !== 'picture')) return;
+    const audio = ex.audio;
+    if (readAloud) speakRu(t('ex.pictureSay'), () => speak(audio));
+    else speak(audio);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const pick = (i: number) => {
     if (locked || picked !== null) return;
     setPicked(i);
@@ -134,7 +144,33 @@ function Choice({ ex, locked, onSubmit }: Props & { ex: Extract<Exercise, { kind
   };
   useOptionKeys(ex.options.length, pick, !locked && picked === null);
   const title =
-    ex.mode === 'listen' ? t('ex.listen') : ex.mode === 'meaning' ? t('ex.meaning') : ex.mode === 'gap' ? t('ex.gap') : t('ex.choose');
+    ex.mode === 'picture'
+      ? t('ex.picture')
+      : ex.mode === 'listen'
+        ? t('ex.listen')
+        : ex.mode === 'meaning'
+          ? t('ex.meaning')
+          : ex.mode === 'gap'
+            ? t('ex.gap')
+            : t('ex.choose');
+  if (ex.mode === 'picture') {
+    return (
+      <div className="exercise picture-ex" {...e2e(ex.answer)}>
+        <h2 className="ex-title">👂 {title}</h2>
+        {ex.audio && <PlayButtons text={ex.audio} size="big" />}
+        <div className="picture-options">
+          {ex.options.map((o, i) => {
+            const state = picked === null ? '' : o === ex.answer ? 'right' : i === picked ? 'wrong' : '';
+            return (
+              <button key={o + i} className={`option big-pic ${state}`} onClick={() => pick(i)} disabled={locked || picked !== null} data-option={o}>
+                {o}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="exercise" {...e2e(ex.answer)}>
       <h2 className="ex-title">{title}</h2>

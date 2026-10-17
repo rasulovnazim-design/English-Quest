@@ -76,6 +76,15 @@ export function MapScreen() {
         )}
       </div>
 
+      <a className="forest-banner" href={href({ name: 'forest' })} data-testid="to-forest">
+        <span className="fb-trees" aria-hidden="true">🌲🪓🌳</span>
+        <span>
+          <b>{t('forest.bannerTitle')}</b>
+          <span className="small">{t('forest.bannerText')}</span>
+        </span>
+        <span className="fb-go">▶</span>
+      </a>
+
       {stages.map((st) => {
         const open = stageUnlocked(s, st.id);
         const entries = categoryEntries(st.id);

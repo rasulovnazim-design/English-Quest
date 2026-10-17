@@ -4,6 +4,7 @@ import { useStore, currentStreak, dailyXp, levelInfo, markLevelSeen } from './en
 import { dueKeys } from './engine/srs';
 import { rankForLevel, DAILY_GOALS } from './engine/xp';
 import { MapScreen } from './screens/MapScreen';
+import { ForestScreen } from './screens/ForestScreen';
 import { CategoryScreen } from './screens/CategoryScreen';
 import { LessonScreen } from './screens/LessonScreen';
 import { BossScreen } from './screens/BossScreen';
@@ -53,6 +54,7 @@ function BottomNav({ active }: { active: string }) {
   const due = dueKeys(srs, undefined, 999).length;
   const items = [
     { name: 'map', ico: '🗺️', label: t('nav.map'), href: href({ name: 'map' }) },
+    { name: 'forest', ico: '🌲', label: t('nav.forest'), href: href({ name: 'forest' }) },
     { name: 'avatar', ico: '🧍', label: t('nav.avatar'), href: href({ name: 'avatar' }) },
     { name: 'review', ico: '🔁', label: t('nav.review'), href: href({ name: 'review' }), badge: due },
     { name: 'phrasebook', ico: '📖', label: t('nav.phrasebook'), href: href({ name: 'phrasebook' }) },
@@ -123,6 +125,9 @@ export function App() {
   switch (route.name) {
     case 'map':
       screen = <MapScreen />;
+      break;
+    case 'forest':
+      screen = <ForestScreen />;
       break;
     case 'category':
       screen = <CategoryScreen key={route.id} id={route.id} />;

@@ -9,6 +9,7 @@ export type Route =
   | { name: 'phrasebook'; id?: string }
   | { name: 'review' }
   | { name: 'avatar' }
+  | { name: 'forest' }
   | { name: 'settings' };
 
 export function parse(hash: string): Route {
@@ -26,6 +27,8 @@ export function parse(hash: string): Route {
       return { name: 'review' };
     case 'avatar':
       return { name: 'avatar' };
+    case 'forest':
+      return { name: 'forest' };
     case 'settings':
       return { name: 'settings' };
     default:
@@ -49,6 +52,8 @@ export function href(r: Route): string {
       return '#/review';
     case 'avatar':
       return '#/avatar';
+    case 'forest':
+      return '#/forest';
     case 'settings':
       return '#/settings';
   }
@@ -69,4 +74,22 @@ export function useRoute(): Route {
     return () => window.removeEventListener('hashchange', on);
   }, []);
   return route;
+}
+
+/** Remembers which game opened a conversation, so "back" returns there. */
+export function setReturnTo(r: Route | null) {
+  try {
+    if (r) sessionStorage.setItem('eq-return', href(r));
+    else sessionStorage.removeItem('eq-return');
+  } catch {
+    /* ignore */
+  }
+}
+
+export function returnHref(fallback: Route): string {
+  try {
+    return sessionStorage.getItem('eq-return') ?? href(fallback);
+  } catch {
+    return href(fallback);
+  }
 }

@@ -40,6 +40,10 @@ export const sfx = {
     tone(196, 0, 0.18, 'sawtooth', 0.06);
     tone(147, 0.15, 0.25, 'sawtooth', 0.06);
   },
+  chop: () => {
+    tone(180, 0, 0.08, 'square', 0.1);
+    tone(110, 0.03, 0.12, 'triangle', 0.12);
+  },
   coin: () => {
     tone(988, 0, 0.07, 'square', 0.06);
     tone(1319, 0.07, 0.2, 'square', 0.06);

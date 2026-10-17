@@ -1,0 +1,25 @@
+{
+  "id": "green-forest",
+  "title": "Зелёный лес",
+  "titleEn": "Green Forest",
+  "width": 3300,
+  "shop": { "x": 150 },
+  "sawmill": { "x": 420 },
+  "golden": { "x": 660 },
+  "trees": [
+    { "id": "alphabet-1", "cat": "alphabet", "lesson": "1", "size": "small", "x": 900 },
+    { "id": "alphabet-2", "cat": "alphabet", "lesson": "2", "size": "small", "x": 1080 },
+    { "id": "alphabet-3", "cat": "alphabet", "lesson": "3", "size": "medium", "x": 1260 },
+    { "id": "alphabet-4", "cat": "alphabet", "lesson": "4", "size": "medium", "x": 1440 },
+    { "id": "alphabet-5", "cat": "alphabet", "lesson": "5", "size": "medium", "x": 1620 },
+    { "id": "greetings-1", "cat": "greetings", "lesson": "1", "size": "small", "x": 2120 },
+    { "id": "greetings-2", "cat": "greetings", "lesson": "2", "size": "medium", "x": 2300 },
+    { "id": "greetings-3", "cat": "greetings", "lesson": "3", "size": "medium", "x": 2480 },
+    { "id": "greetings-4", "cat": "greetings", "lesson": "4", "size": "medium", "x": 2660 }
+  ],
+  "oaks": [
+    { "cat": "alphabet", "x": 1860 },
+    { "cat": "greetings", "x": 2920 }
+  ],
+  "gate": { "x": 3180, "title": "Деревня", "titleEn": "Village" }
+}

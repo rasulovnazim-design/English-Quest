@@ -3,7 +3,7 @@ import { categories } from '../data';
 import type { Boss, BossAnswer, BossNode, Profile } from '../engine/types';
 import { checkFree, fill, nodeById, nextNode, profileVars, replyOptions, replyTiles, type Option, type Vars } from '../engine/boss';
 import { checkAnswer, type CheckResult } from '../engine/checker';
-import { addCoins, addXp, bossRoundCleared, getState, updateProfile, useStore } from '../engine/store';
+import { addCoins, addXp, bossPassed, bossRoundCleared, getState, updateProfile, useStore } from '../engine/store';
 import { BOSS_COINS } from '../engine/avatar';
 import { sfx } from '../engine/sfx';
 import { speak, speakingEnabled, stopSpeaking } from '../engine/speech';
@@ -12,7 +12,7 @@ import { COUNTRY_LIST } from '../engine/patterns';
 import { FeedbackSheet } from '../components/Feedback';
 import { TileBuilder, SpeakInput } from '../components/Exercises';
 import { Confetti, Modal, PlayButtons, e2e, E2E } from '../components/common';
-import { href } from '../router';
+import { href, returnHref } from '../router';
 import { t } from '../locale';
 
 interface Bubble {
@@ -27,8 +27,9 @@ const LIVES = 3;
 const finalFiles = import.meta.glob<Boss>('../data/final-boss.json', { eager: true, import: 'default' });
 export const finalBoss: Boss | undefined = Object.values(finalFiles)[0];
 
+/** Only a first name and age are needed (children: as little personal data as possible). */
 export function profileComplete(p: Profile) {
-  return !!(p.name.trim() && p.age.trim() && p.country.trim() && p.city.trim());
+  return !!(p.name.trim() && p.age.trim());
 }
 
 export function BossScreen({ catId }: { catId: string }) {
@@ -42,14 +43,16 @@ export function BossScreen({ catId }: { catId: string }) {
 
   if (!boss) return <div className="page">{t('nav.back')}</div>;
   const cleared = new Set(progress?.rounds ?? []);
-  const rounds = isFinal ? [3] : [1, 2, 3];
+  const little = getState().forest.mode === 'little';
+  // Little children (3–6) play only the first round, with every option read aloud.
+  const rounds = isFinal ? [3] : little ? [1] : [1, 2, 3];
   const nextRound = rounds.find((r) => !cleared.has(r)) ?? rounds[0];
 
   if (round !== null) {
     return <BossRound key={round} boss={boss} catId={catId} round={round} isFinal={isFinal} onExit={() => setRound(null)} onNext={(r) => setRound(r)} />;
   }
 
-  const backHref = isFinal ? href({ name: 'map' }) : href({ name: 'category', id: catId });
+  const backHref = isFinal ? href({ name: 'map' }) : returnHref({ name: 'category', id: catId });
   return (
     <div className="page full">
       <div className="lesson-top">
@@ -150,14 +153,6 @@ export function ProfileForm({ onSaved, saveLabel }: { onSaved: () => void; saveL
           ))}
         </datalist>
       </div>
-      <div className="field">
-        <label htmlFor="pf-city">{t('profile.city')}</label>
-        <input id="pf-city" className="input" value={form.city} onChange={set('city')} placeholder={t('profile.cityPh')} autoCapitalize="words" lang="en" />
-      </div>
-      <div className="field">
-        <label htmlFor="pf-job">{t('profile.job')}</label>
-        <input id="pf-job" className="input" value={form.job} onChange={set('job')} placeholder={t('profile.jobPh')} autoCapitalize="off" lang="en" />
-      </div>
       {error && <p style={{ color: 'var(--bad)' }}>{error}</p>}
       <button className="btn primary block" onClick={save} data-testid="profile-save">
         {saveLabel ?? t('boss.profileSave')}
@@ -245,6 +240,7 @@ function BossRound({
     const before = getState().bosses[catId];
     const wasPassed = !!before?.passed;
     bossRoundCleared(catId, round);
+    if (getState().forest.mode === 'little' && round === 1) bossPassed(catId);
     let bonus = XP.bossRound;
     const nowPassed = isFinal || !!getState().bosses[catId]?.passed;
     if (nowPassed && !wasPassed) {
@@ -296,7 +292,7 @@ function BossRound({
   const [picked, setPicked] = useState<Set<string>>(new Set());
   useEffect(() => setPicked(new Set()), [nodeId]);
 
-  const backToCat = isFinal ? href({ name: 'map' }) : href({ name: 'category', id: catId });
+  const backToCat = isFinal ? href({ name: 'map' }) : returnHref({ name: 'category', id: catId });
 
   if (status === 'won') {
     const st = getState().bosses[catId];
@@ -409,8 +405,9 @@ function BossRound({
           {round === 1 && (
             <div className="options">
               {options.map((o) => (
+                <div className="row" key={o.text} style={{ flexWrap: 'nowrap' }}>
                 <button
-                  key={o.text}
+                  style={{ flex: 1 }}
                   className={`option ${picked.has(o.text) ? 'wrong' : ''}`}
                   disabled={!!feedback || picked.has(o.text)}
                   {...(E2E && o.answer ? { 'data-correct': '1' } : {})}
@@ -424,6 +421,8 @@ function BossRound({
                 >
                   {o.text}
                 </button>
+                {getState().forest.mode === 'little' && <PlayButtons text={o.text} size="mini" />}
+                </div>
               ))}
             </div>
           )}

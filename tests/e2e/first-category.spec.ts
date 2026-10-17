@@ -38,8 +38,6 @@ test('plays the whole first category: 5 lessons and the 3-round conversation', a
   await page.locator('#pf-name').fill('Anna');
   await page.locator('#pf-age').fill('34');
   await page.locator('#pf-country').fill('Russia');
-  await page.locator('#pf-city').fill('Kazan');
-  await page.locator('#pf-job').fill('engineer');
   await page.getByTestId('profile-save').click();
 
   for (let round = 1; round <= 3; round++) {

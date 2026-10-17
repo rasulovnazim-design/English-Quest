@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { categories, lessonKey, mapEntries } from '../data';
 import { BLOCK_COLOURS } from './MapScreen';
 import { useStore } from '../engine/store';
 import { bossUnlocked, categoryUnlocked } from '../engine/progress';
 import { GrammarView, MistakesView, Modal } from '../components/common';
-import { href } from '../router';
+import { href, setReturnTo } from '../router';
 import { t } from '../locale';
 
 export function CategoryScreen({ id }: { id: string }) {
   const cat = categories[id];
   const s = useStore((x) => x);
   const [grammar, setGrammar] = useState(false);
+  useEffect(() => setReturnTo(null), []);
   if (!cat || !categoryUnlocked(s, id)) {
     return (
       <div className="page">

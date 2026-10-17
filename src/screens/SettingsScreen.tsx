@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { exportState, importState, resetState, updateSettings, useStore } from '../engine/store';
+import { exportState, importState, resetState, updateForest, updateSettings, useStore } from '../engine/store';
 import { englishVoices, recognitionSupported, speak, ttsSupported } from '../engine/speech';
 import { DAILY_GOALS } from '../engine/xp';
 import { ProfileForm } from './BossScreen';
@@ -9,6 +9,7 @@ import { installPrompt, onInstallPrompt } from '../install';
 
 export function SettingsScreen() {
   const settings = useStore((s) => s.settings);
+  const forestMode = useStore((s) => s.forest.mode);
   const [toast, setToast] = useState('');
   const [profile, setProfile] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
@@ -38,6 +39,18 @@ export function SettingsScreen() {
   return (
     <div className="page">
       <h1>⚙️ {t('settings.title')}</h1>
+
+      <div className="card">
+        <h2>🧒 {t('forest.mode')}</h2>
+        <div className="seg">
+          <button className={forestMode === 'little' ? 'on' : ''} onClick={() => updateForest({ mode: 'little' })}>
+            🧸 {t('forest.little')}
+          </button>
+          <button className={forestMode === 'big' ? 'on' : ''} onClick={() => updateForest({ mode: 'big' })}>
+            🎒 {t('forest.big')}
+          </button>
+        </div>
+      </div>
 
       <div className="card">
         <h2>{t('settings.accent')}</h2>

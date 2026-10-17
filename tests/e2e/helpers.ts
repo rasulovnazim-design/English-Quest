@@ -25,7 +25,9 @@ async function signature(page: Page): Promise<string> {
       document.querySelectorAll('.bubble').length,
       document.querySelector('.ex-title')?.textContent ?? '',
       document.querySelector('.flash .front')?.textContent ?? '',
-      document.querySelector('.exercise')?.getAttribute('data-answer') ?? ''
+      document.querySelector('.exercise')?.getAttribute('data-answer') ?? '',
+      document.querySelectorAll('.tree-hp .on').length,
+      !!document.querySelector('[data-testid="timber"]')
     ].join('|')
   );
 }

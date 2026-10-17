@@ -15,6 +15,8 @@ export interface Item {
   note?: string;
   /** Text for text-to-speech when it differs from `en` (e.g. a letter name). */
   say?: string;
+  /** false if the emoji is not a clear picture of the word (excluded from picture questions for little children). */
+  pic?: boolean;
 }
 
 export interface GrammarPoint {

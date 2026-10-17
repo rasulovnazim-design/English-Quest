@@ -63,6 +63,36 @@ export function speak(text: string, slow = false, onEnd?: () => void) {
   synth.speak(u);
 }
 
+function russianVoice(): SpeechSynthesisVoice | undefined {
+  if (!voices.length) loadVoices();
+  return voices.find((v) => v.lang.toLowerCase().startsWith('ru'));
+}
+
+/** Reads a short instruction aloud in Russian (for children who cannot read yet), then calls onEnd. */
+export function speakRu(text: string, onEnd?: () => void) {
+  const v = russianVoice();
+  if (!synth || !v) {
+    onEnd?.();
+    return;
+  }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = v;
+  u.lang = v.lang;
+  u.rate = 1;
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    onEnd?.();
+  };
+  u.onend = finish;
+  u.onerror = finish;
+  // Some browsers never fire onend; don't let the English word get lost.
+  setTimeout(finish, 2500);
+  synth.speak(u);
+}
+
 export function stopSpeaking() {
   synth?.cancel();
 }

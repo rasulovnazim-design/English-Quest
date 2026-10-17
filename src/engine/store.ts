@@ -41,6 +41,21 @@ export interface State {
   avatar: AvatarLook;
   /** Avatar items bought in the shop. */
   owned: string[];
+  forest: ForestState;
+}
+
+/** The forest game: tools, carried logs and the state of each tree. */
+export interface ForestState {
+  /** Age mode chosen at the start: "little" (3–6, no reading) or "big" (7–12). Null until chosen. */
+  mode: 'little' | 'big' | null;
+  axe: string;
+  bag: string;
+  pets: string[];
+  logs: number;
+  /** Per tree: how many times it has been felled and when it grows back (ms timestamp). */
+  trees: Record<string, { felled: number; regrowAt: number }>;
+  /** Avatar position in the forest (px). */
+  x: number;
 }
 
 const KEY = 'english-quest:v1';
@@ -60,7 +75,8 @@ export function initialState(): State {
     coins: 0,
     stars: {},
     avatar: { skin: 'sun', shirt: 'blue', pants: 'navy', hat: 'none', face: 'smile' },
-    owned: []
+    owned: [],
+    forest: { mode: null, axe: 'stone', bag: 'basket', pets: [], logs: 0, trees: {}, x: 260 }
   };
 }
 
@@ -92,6 +108,7 @@ export function validateState(data: unknown): State | null {
     srs: d.srs ?? {},
     stars: d.stars ?? {},
     owned: d.owned ?? [],
+    forest: { ...base.forest, ...d.forest, trees: d.forest?.trees ?? {} },
     coins: typeof d.coins === 'number' ? d.coins : 0,
     avatar: { ...base.avatar, ...d.avatar }
   } as State;
@@ -184,6 +201,11 @@ export function buyItem(id: string, price: number): boolean {
   if (state.coins < price) return false;
   set({ ...state, coins: state.coins - price, owned: [...state.owned, id] });
   return true;
+}
+
+export function updateForest(patch: Partial<ForestState> | ((f: ForestState) => Partial<ForestState>)) {
+  const p = typeof patch === 'function' ? patch(state.forest) : patch;
+  set({ ...state, forest: { ...state.forest, ...p } });
 }
 
 export function completeLesson(lessonId: string, score: number, itemKeys: string[]) {

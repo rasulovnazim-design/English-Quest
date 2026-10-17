@@ -16,7 +16,7 @@ export type Exercise =
   | { kind: 'match'; pairs: { ref: ItemRef; side: string }[] }
   | {
       kind: 'choice';
-      mode: 'listen' | 'meaning' | 'gap' | 'choose';
+      mode: 'listen' | 'meaning' | 'gap' | 'choose' | 'picture';
       prompt?: string;
       promptRu?: string;
       audio?: string;
