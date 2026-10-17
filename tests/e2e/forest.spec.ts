@@ -21,6 +21,10 @@ async function playForest(page: Page, cat: string, maxSteps = 600) {
       await playBoss(page);
       continue;
     }
+    if (await visible(page, 'level-up')) {
+      await page.getByTestId('level-up').getByRole('button').click();
+      continue;
+    }
     if (await visible(page, 'timber-ok')) {
       await page.getByTestId('timber-ok').click({ timeout: 2000 }).catch(() => undefined);
       continue;
