@@ -60,6 +60,17 @@ The site is a Cloudflare Worker that serves the built files as static assets (`w
 
 The repository can then be made private (Settings → General → Danger Zone → Change visibility). The GitHub Pages copy turns itself off when the repository becomes private.
 
+### One-time access keys
+
+The Worker (`src/worker/index.ts`) can require a one-time key before anything is served. Each key unlocks one device for a year and then cannot be used again. Without a key, only the key page is sent; the game's code is not.
+
+To switch it on:
+1. Cloudflare → **Storage & Databases → KV → Create namespace** `english-quest-keys`. Put its ID into `wrangler.jsonc` (`kv_namespaces`).
+2. Worker → **Settings → Variables and Secrets** → add a **Secret** `ADMIN_PASSWORD`.
+3. Open `/admin` on the site, enter the password, and create keys.
+
+Until both are set up, the game stays open. To let the live tests through the gate, add the same password as a GitHub repository secret `GATE_ADMIN`. On iPhone, install the game to the home screen first and enter the key inside the installed app, because it keeps its own cookies.
+
 ### Add or correct content
 
 All learning content is kept apart from the code:
@@ -148,6 +159,17 @@ BASE_URL=https://english-quest.rasulovnazim.workers.dev/ npm run e2e   # те ж
 Сайт работает как Cloudflare Worker, который раздаёт собранные файлы (`wrangler.jsonc`). Cloudflare подключён к этому репозиторию: команда сборки `npm run build`, команда публикации `npx wrangler deploy`. Каждое изменение в `main` автоматически публикуется на https://english-quest.rasulovnazim.workers.dev/.
 
 Затем репозиторий можно сделать закрытым (Settings → General → Danger Zone → Change visibility). Копия на GitHub Pages отключится сама, когда репозиторий станет закрытым.
+
+### Одноразовые ключи доступа
+
+Worker (`src/worker/index.ts`) может требовать одноразовый ключ, прежде чем что-либо показать. Каждый ключ открывает игру на одном устройстве на год, после чего его нельзя использовать снова. Без ключа отдаётся только страница ввода ключа; код игры не отправляется.
+
+Как включить:
+1. Cloudflare → **Storage & Databases → KV → Create namespace** `english-quest-keys`. Вставьте его ID в `wrangler.jsonc` (`kv_namespaces`).
+2. Worker → **Settings → Variables and Secrets** → добавьте **Secret** `ADMIN_PASSWORD`.
+3. Откройте на сайте `/admin`, введите пароль и создайте ключи.
+
+Пока это не настроено, игра открыта для всех. Чтобы автоматические тесты проходили через ключ, добавьте тот же пароль как секрет репозитория GitHub `GATE_ADMIN`. На iPhone сначала установите игру на экран «Домой» и вводите ключ уже в установленном приложении — у него свои cookie.
 
 ### Как добавить или исправить материалы
 

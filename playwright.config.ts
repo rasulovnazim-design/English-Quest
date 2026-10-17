@@ -7,6 +7,8 @@ const baseURL = remote ?? 'http://localhost:4173/';
 
 export default defineConfig({
   testDir: 'tests/e2e',
+  // On a live site with the key gate switched on, get a fresh test key and unlock the browser first.
+  globalSetup: './tests/e2e/global-setup.ts',
   timeout: 240_000,
   expect: { timeout: 10_000 },
   retries: remote ? 1 : 0,
@@ -14,6 +16,7 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'retain-on-failure',
+    storageState: remote && process.env.GATE_ADMIN ? 'test-results/unlocked.json' : undefined,
     launchOptions: process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}
   },
   projects: [

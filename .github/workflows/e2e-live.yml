@@ -31,3 +31,6 @@ jobs:
         env:
           CI: 'true'
           BASE_URL: ${{ inputs.url || 'https://english-quest.rasulovnazim.workers.dev/' }}
+          # Optional repository secret: the Worker's ADMIN_PASSWORD, so tests can unlock the key gate.
+          GATE_ADMIN: ${{ secrets.GATE_ADMIN }}
+          GATE_URL: ${{ secrets.GATE_ADMIN && (inputs.url || 'https://english-quest.rasulovnazim.workers.dev/') || '' }}
