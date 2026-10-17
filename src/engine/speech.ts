@@ -36,12 +36,15 @@ function pickVoice(): SpeechSynthesisVoice | undefined {
     if (chosen) return chosen;
   }
   const lang = accent === 'gb' ? 'en-gb' : 'en-us';
-  const local = list.filter((v) => v.lang.toLowerCase().replace('_', '-') === lang);
+  const local = list.filter((v) => v.lang.toLowerCase().replace('_', '-') === lang && voiceQuality(v) > -3);
+  // A natural/online voice beats everything else; then the known good voices; then the best of the rest.
+  const natural = [...local].sort((a, b) => voiceQuality(b) - voiceQuality(a)).find((v) => voiceQuality(v) >= 3);
+  if (natural) return natural;
   for (const name of PREFERRED[accent]) {
     const v = local.find((x) => x.name.includes(name));
     if (v) return v;
   }
-  return local[0] ?? list[0];
+  return [...local].sort((a, b) => voiceQuality(b) - voiceQuality(a))[0] ?? list[0];
 }
 
 export function speak(text: string, slow = false, onEnd?: () => void) {
@@ -63,33 +66,84 @@ export function speak(text: string, slow = false, onEnd?: () => void) {
   synth.speak(u);
 }
 
-function russianVoice(): SpeechSynthesisVoice | undefined {
-  if (!voices.length) loadVoices();
-  return voices.find((v) => v.lang.toLowerCase().startsWith('ru'));
+/** Rough voice quality: natural/online voices sound far better than the old built-in ones. */
+export function voiceQuality(v: SpeechSynthesisVoice): number {
+  let q = 0;
+  if (/natural|neural|online|premium|enhanced|siri/i.test(v.name)) q += 3;
+  if (/google/i.test(v.name)) q += 2;
+  if (!v.localService) q += 1;
+  if (/espeak|compact|eloquence/i.test(v.name)) q -= 5;
+  return q;
 }
 
-/** Reads a short instruction aloud in Russian (for children who cannot read yet), then calls onEnd. */
-export function speakRu(text: string, onEnd?: () => void) {
-  const v = russianVoice();
-  if (!synth || !v) {
-    onEnd?.();
-    return;
+/** Russian voices known to be clear and natural on common devices. */
+const GOOD_RU = ['Google русский', 'Milena', 'Yuri', 'Katya', 'Svetlana', 'Dmitry', 'Dariya'];
+
+export function russianVoices(): SpeechSynthesisVoice[] {
+  if (!voices.length) loadVoices();
+  return voices.filter((v) => v.lang.toLowerCase().startsWith('ru'));
+}
+
+function goodRussianVoice(): SpeechSynthesisVoice | undefined {
+  const list = russianVoices();
+  for (const name of GOOD_RU) {
+    const v = list.find((x) => x.name.includes(name) && voiceQuality(x) >= 0);
+    if (v) return v;
   }
-  synth.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.voice = v;
-  u.lang = v.lang;
-  u.rate = 1;
+  return [...list].sort((a, b) => voiceQuality(b) - voiceQuality(a)).find((v) => voiceQuality(v) >= 3);
+}
+
+/** Is there a voice good enough to read Russian instructions aloud? */
+export function russianVoiceAvailable(): boolean {
+  return !!goodRussianVoice();
+}
+
+// Human recordings of the Russian instructions: put <key>.mp3 into src/assets/voice/ru/ and
+// they are played instead of the device voice (e.g. pictureSay.mp3 for "Послушай и найди").
+const recordings = import.meta.glob<string>('../assets/voice/ru/*.mp3', { eager: true, query: '?url', import: 'default' });
+function recordingFor(key: string): string | undefined {
+  const hit = Object.entries(recordings).find(([path]) => path.endsWith(`/${key}.mp3`));
+  return hit?.[1];
+}
+
+let clip: HTMLAudioElement | null = null;
+
+/**
+ * Reads a short Russian instruction aloud (for children who cannot read yet), then calls onEnd.
+ * Uses a human recording if there is one; otherwise the device voice, but only if it sounds good
+ * (setting "auto"), or always ("on"), or never ("off").
+ */
+export function speakRu(key: string, text: string, onEnd?: () => void) {
   let done = false;
   const finish = () => {
     if (done) return;
     done = true;
     onEnd?.();
   };
+  const mode = getState().settings.ruVoice;
+  if (mode === 'off') return finish();
+  const rec = recordingFor(key);
+  if (rec) {
+    synth?.cancel();
+    clip?.pause();
+    clip = new Audio(rec);
+    clip.onended = finish;
+    clip.onerror = finish;
+    void clip.play().catch(finish);
+    setTimeout(finish, 4000);
+    return;
+  }
+  const v = mode === 'on' ? goodRussianVoice() ?? russianVoices()[0] : goodRussianVoice();
+  if (!synth || !v) return finish();
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = v;
+  u.lang = v.lang;
+  u.rate = 0.95;
   u.onend = finish;
   u.onerror = finish;
   // Some browsers never fire onend; don't let the English word get lost.
-  setTimeout(finish, 2500);
+  setTimeout(finish, 3000);
   synth.speak(u);
 }
 

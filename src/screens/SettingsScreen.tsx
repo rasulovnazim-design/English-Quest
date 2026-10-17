@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { exportState, importState, resetState, updateForest, updateSettings, useStore } from '../engine/store';
-import { englishVoices, recognitionSupported, speak, ttsSupported } from '../engine/speech';
+import { englishVoices, recognitionSupported, russianVoiceAvailable, speak, speakRu, ttsSupported } from '../engine/speech';
 import { DAILY_GOALS } from '../engine/xp';
 import { ProfileForm } from './BossScreen';
 import { Modal, Toast } from '../components/common';
@@ -89,6 +89,21 @@ export function SettingsScreen() {
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="card">
+        <h2>🗣️ {t('settings.ruVoice')}</h2>
+        <div className="seg">
+          {(['auto', 'on', 'off'] as const).map((m) => (
+            <button key={m} className={settings.ruVoice === m ? 'on' : ''} onClick={() => updateSettings({ ruVoice: m })}>
+              {t(`settings.ruVoice${m[0].toUpperCase()}${m.slice(1)}`)}
+            </button>
+          ))}
+        </div>
+        {settings.ruVoice === 'auto' && !russianVoiceAvailable() && <p className="small muted" style={{ marginTop: 8 }}>{t('settings.ruVoiceNone')}</p>}
+        <button className="btn small" style={{ marginTop: 8 }} onClick={() => speakRu('hello', t('voice.hello'))}>
+          🔊 {t('settings.testVoice')}
+        </button>
       </div>
 
       <div className="card">

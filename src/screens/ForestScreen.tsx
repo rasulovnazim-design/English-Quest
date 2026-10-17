@@ -175,16 +175,16 @@ export function ForestScreen() {
   const dueCount = useMemo(() => dueKeys(s.srs, undefined, 999).length, [s.srs]);
   const goldenReady = dueCount >= 3 && !treeGrowing(s, 'golden', now);
 
-  const say = (text: string) => {
+  const say = (text: string, key = 'toast') => {
     setToast(text);
-    if (mode === 'little') speakRu(text);
+    if (mode === 'little') speakRu(key, text);
   };
 
   const openTree = (tree: ZoneTree, index: number) => {
     sfx.tap();
     if (!treeUnlocked(s, index)) {
       walkTo(tree.x - 70);
-      say(t('forest.lockedTree'));
+      say(t('forest.lockedTree'), 'lockedTree');
       return;
     }
     if (treeGrowing(s, tree.id, now)) {
@@ -192,7 +192,7 @@ export function ForestScreen() {
       return;
     }
     if (bagFull) {
-      say(t('forest.bagFull'));
+      say(t('forest.bagFull'), 'bagFull');
       return;
     }
     walkTo(tree.x - 70, () => {
@@ -204,11 +204,11 @@ export function ForestScreen() {
   const openOak = (cat: string) => {
     sfx.tap();
     if (s.bosses[cat]?.passed) {
-      say(t('forest.oakDone'));
+      say(t('forest.oakDone'), 'oakDone');
       return;
     }
     if (!oakUnlocked(s, cat)) {
-      say(t('forest.oakLocked'));
+      say(t('forest.oakLocked'), 'oakLocked');
       return;
     }
     const oak = zone.oaks.find((o) => o.cat === cat)!;
@@ -287,7 +287,7 @@ export function ForestScreen() {
   })();
 
   const goNext = () => {
-    if (!nextTree) return say(t('forest.allGrowing'));
+    if (!nextTree) return say(t('forest.allGrowing'), 'allGrowing');
     if ('oak' in nextTree) return openOak(nextTree.oak as string);
     openTree(nextTree.tr, nextTree.i);
   };
@@ -364,7 +364,7 @@ export function ForestScreen() {
               onClick={(e) => {
                 e.stopPropagation();
                 sfx.tap();
-                if (bagFull) return say(t('forest.bagFull'));
+                if (bagFull) return say(t('forest.bagFull'), 'bagFull');
                 walkTo(zone.golden.x - 70, () => setPanel({ kind: 'chop', golden: true }));
               }}
               aria-label={t('forest.golden')}
@@ -537,7 +537,7 @@ function ModePicker() {
   const choose = (m: 'little' | 'big') => {
     sfx.correct();
     updateForest({ mode: m });
-    if (m === 'little') speakRu('Привет! Давай рубить деревья и учить английский!');
+    if (m === 'little') speakRu('hello', t('voice.hello'));
   };
   return (
     <div className="overlay">
@@ -566,7 +566,7 @@ function IntroPanel({ tree, little, onStart, onClose }: { tree: ZoneTree; little
   const refs = newWordsFor(tree).filter((r) => !little || r.group === 'letter' || pictureable(r));
   const list = refs.length ? refs : newWordsFor(tree);
   useEffect(() => {
-    if (little) speakRu('Новые слова! Нажимай на картинки и слушай.');
+    if (little) speakRu('newWords', t('voice.newWords'));
   }, [little]);
   return (
     <div className="chop-panel" role="dialog" aria-label={t('lesson.newWords')}>
@@ -665,7 +665,7 @@ function ChopPanel({
       sfx.wrong();
       setCombo(0);
       setWrong(o);
-      if (mode === 'little') speakRu('Почти! Послушай ещё раз.');
+      if (mode === 'little') speakRu('tryAgain', t('voice.tryAgain'));
       return;
     }
     const xp = scoreExercise({ correct: true, firstTry: true, hints: o.hints });

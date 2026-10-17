@@ -124,7 +124,7 @@ function Choice({ ex, locked, onSubmit, autoplay, readAloud }: Props & { ex: Ext
   useEffect(() => {
     if (!autoplay || !ex.audio || (ex.mode !== 'listen' && ex.mode !== 'picture')) return;
     const audio = ex.audio;
-    if (readAloud) speakRu(t('ex.pictureSay'), () => speak(audio));
+    if (readAloud) speakRu('pictureSay', t('voice.pictureSay'), () => speak(audio));
     else speak(audio);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const pick = (i: number) => {

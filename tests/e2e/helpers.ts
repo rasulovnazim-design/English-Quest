@@ -95,6 +95,11 @@ export async function solveStep(page: Page): Promise<'lesson-done' | 'won' | 'st
   if ((await ex.count()) > 0 && (await ex.isVisible())) {
     const answer = (await ex.getAttribute('data-answer'))!;
     if ((await ex.locator('[data-option]').count()) > 0) {
+      // Between questions (the chop animation), options are briefly disabled: wait for the next one.
+      if ((await ex.locator('[data-option]:not([disabled])').count()) === 0) {
+        await page.waitForTimeout(150);
+        return 'step';
+      }
       await act(page, () => ex.locator(`[data-option="${answer.replace(/"/g, '\\"')}"]`).click());
       return 'step';
     }

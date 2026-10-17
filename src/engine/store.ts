@@ -12,6 +12,8 @@ export interface Settings {
   speaking: boolean;
   voiceURI: string;
   sound: boolean;
+  /** Russian read-aloud for little children: only with a good voice ("auto"), always, or never. */
+  ruVoice: 'auto' | 'on' | 'off';
 }
 
 /** The learner's blocky avatar. Values are ids from engine/avatar.ts. */
@@ -69,7 +71,7 @@ export function initialState(): State {
     lessons: {},
     bosses: {},
     srs: {},
-    settings: { accent: 'gb', theme: 'auto', goal: 'normal', speaking: true, voiceURI: '', sound: true },
+    settings: { accent: 'gb', theme: 'auto', goal: 'normal', speaking: true, voiceURI: '', sound: true, ruVoice: 'auto' },
     profile: { name: '', age: '', country: '', city: '', job: '' },
     seenLevel: 1,
     coins: 0,
