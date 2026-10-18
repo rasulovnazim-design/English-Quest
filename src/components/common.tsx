@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { speak, ttsSupported } from '../engine/speech';
 import { t } from '../locale';
 import type { GrammarPoint, Mistake } from '../engine/types';
@@ -119,10 +119,13 @@ export function MistakesView({ list }: { list: Mistake[] }) {
 }
 
 export function Toast({ text, onDone }: { text: string; onDone: () => void }) {
+  // Keep the latest callback without restarting the timer when the parent re-renders.
+  const done = useRef(onDone);
+  done.current = onDone;
   useEffect(() => {
-    const id = setTimeout(onDone, 2600);
+    const id = setTimeout(() => done.current(), 2600);
     return () => clearTimeout(id);
-  }, [onDone]);
+  }, [text]);
   return (
     <div className="toast" role="status">
       {text}

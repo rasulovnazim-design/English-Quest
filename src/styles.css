@@ -2500,3 +2500,8 @@ h3,
     width: 62px;
   }
 }
+
+/* Messages never block taps on the buttons underneath. */
+.toast {
+  pointer-events: none;
+}
