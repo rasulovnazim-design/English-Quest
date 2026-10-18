@@ -49,9 +49,9 @@ async function visible(page: Page, selector: string) {
 
 async function buildTiles(page: Page, root: string, answer: string) {
   for (const w of tilesOf(answer)) {
-    await page.locator(`${root} button[data-tile="${w.replace(/"/g, '\\"')}"]:not(.used):not([disabled])`).first().click();
+    await page.locator(`${root} button[data-tile="${w.replace(/"/g, '\\"')}"]:not(.used):not([disabled])`).first().click({ timeout: 3000 });
   }
-  await page.locator(`${root} [data-testid="check"]`).click();
+  await page.locator(`${root} [data-testid="check"]`).click({ timeout: 3000 });
 }
 
 /** Answers whatever exercise is on screen. Returns false when there is nothing to do. */
@@ -100,16 +100,17 @@ export async function solveStep(page: Page): Promise<'lesson-done' | 'won' | 'st
         await page.waitForTimeout(150);
         return 'step';
       }
-      await act(page, () => ex.locator(`[data-option="${answer.replace(/"/g, '\\"')}"]`).click());
+      // If the question changes under us, give up this tap and look at the screen again.
+      await act(page, () => ex.locator(`[data-option="${answer.replace(/"/g, '\\"')}"]`).click({ timeout: 3000 }).catch(() => undefined));
       return 'step';
     }
     if ((await ex.locator('button[data-tile]').count()) > 0) {
-      await act(page, () => buildTiles(page, '[data-answer]:visible', answer));
+      await act(page, () => buildTiles(page, '[data-answer]:visible', answer).catch(() => undefined));
       return 'step';
     }
     if ((await ex.locator('[data-testid="answer-input"]').count()) > 0) {
-      await ex.locator('[data-testid="answer-input"]').fill(answer);
-      await act(page, () => ex.locator('[data-testid="check"]').click());
+      await ex.locator('[data-testid="answer-input"]').fill(answer, { timeout: 3000 }).catch(() => undefined);
+      await act(page, () => ex.locator('[data-testid="check"]').click({ timeout: 3000 }).catch(() => undefined));
       return 'step';
     }
   }
